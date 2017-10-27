@@ -14,6 +14,7 @@
                                 <th>Tên người dùng</th>
                                 <th>Email</th>
                                 <th>Địa chỉ</th>
+                                <th>Loại Khách Hàng</th>
                                 <th>Số điện thoại</th>
                                 <th>Thời gian tạo</th>
                                 <th>Xóa</th>
@@ -27,6 +28,11 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->diachi}}</td>
+                             @if($user->role_id==1)
+                             	<td>Khách hàng</td>
+                             @elseif($user->role_id==2)
+                             	<td>Chủ shop</td>
+                             @endif
                                 <td>{{$user->sodienthoai}}</td>
                                 <td>{{$user->created_at}}</td>
                                 <td class="center">

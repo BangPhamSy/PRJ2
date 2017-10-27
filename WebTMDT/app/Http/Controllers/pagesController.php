@@ -88,7 +88,9 @@ class pagesController extends Controller
     	{
     		$shop->user_id = Auth::User()->id;
 	    	$shop->tenshop = $request->tenshop;
+            $shop->name    = Auth::User()->name;
 	    	$shop->save();
+            
     	}
 	    	
     	return redirect()->back()->with('success','Vui lòng đợi phê duyệt');

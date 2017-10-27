@@ -3,8 +3,8 @@
 	  			<p style="color: white;">{{$i=1}}</p>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Category
-                            <small>List</small>
+                        <h1 class="page-header">Danh sách 
+                            <small>Các Shop</small>
                         </h1>
                     </div>
 
@@ -27,7 +27,7 @@
                         		
 	                            <tr class="odd gradeX" align="center">
 	                                <td>{{$i++}}</td>
-	                                <td></td>
+	                                <td>{{$sh->name}}</td>
 	                                <td>{{$sh->user_id}}</td>
 	                                <td>{{$quantity}}</td>
 	                                

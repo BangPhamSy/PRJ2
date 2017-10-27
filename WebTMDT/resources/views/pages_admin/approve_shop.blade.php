@@ -27,11 +27,11 @@
                                 <td>{{$ls->id}}</td>
                                 <td>{{$ls->tenshop}}</td>
                                 
-                                <td>{{$ls->user_id}}</td>
+                                <td>{{$ls->name}}</td>
                                 
                                 <td>{{$ls->created_at}}</td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> 
-                                    <a href="{{route('agree_shop',$ls->id)}}">Ok</a>
+                                    <a href="{{route('agree_shop',$ls->id)}}">Chấp nhận</a>
                                 </td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
                                     <a href="{{route('cancel_shop',$ls->id)}}"> Delete</a>
