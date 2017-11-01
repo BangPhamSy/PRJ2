@@ -23,18 +23,20 @@
                         </thead>
                         <tbody>
 
-                        	@foreach($shop as $sh)
+                        	@foreach($users as $user)
                         		
 	                            <tr class="odd gradeX" align="center">
+                                
 	                                <td>{{$i++}}</td>
-	                                <td>{{$sh->name}}</td>
-	                                <td>{{$sh->user_id}}</td>
-	                                <td>{{$quantity}}</td>
+	                                <td>{{$user->name}}</td>
+	                                <td>{{$user->id}}</td>
+	                                <td>{{$user->Shop->count()}}</td>
 	                                
 	                                <td class="center">
-	                                	<a href="{{route('quantity_shop',$sh->user_id)}}">Chi tiết</a></td>
+	                                	<a href="{{route('quantity_shop',$user->id)}}">Chi tiết</a></td>
 	                                <td></td>
 	                            </tr>
+                             
                             @endforeach
                            
                         </tbody>

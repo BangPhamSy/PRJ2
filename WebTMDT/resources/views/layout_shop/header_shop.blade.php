@@ -19,7 +19,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ $shop->tenshop }}</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -54,10 +54,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Quản lí sản phẩm<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List Category</a>
+                                    <a href="#">Danh sách sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add Category</a>
+                                    <a href="{{route('themsp',$shop->id)}}">Thêm sản phẩm mới</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

@@ -48,12 +48,13 @@ class AdminController extends Controller
 
 
     public function management_shop(){
-    	$shop = Shop::select('name','user_id')->groupBy('name','user_id')->get() ;
+    	//$shop = Shop::select('name','user_id')->groupBy('name','user_id')->get() ;
+    	//$quantity = Shop::select('name','user_id')->groupBy('name','user_id')->count();
+    	$users = Users::where('role_id','2')->get();
 
-
-    	$quantity = Shop::select('name','user_id')->groupBy('name','user_id')->count();
     	
-    	return view('pages_admin.management_shop',compact('shop','quantity'));
+    	
+    	return view('pages_admin.management_shop',['users'=>$users]);
     }
 
 

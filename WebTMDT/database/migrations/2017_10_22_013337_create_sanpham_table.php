@@ -15,12 +15,14 @@ class CreateSanphamTable extends Migration
     {
         Schema::create('sanpham', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('shop_id');
             $table->integer('loaisanpham_id');
             $table->string('tensanpham');
             $table->string('hinhanh');
-            $table->string('nhasanxuat');
             $table->integer('gia');
-            $table->integer('giakhuyenmai');
+            $table->integer('tilekhuyenmai');
+            $table->integer('soluong');
+            $table->string('mota');
             $table->timestamps();
         });
     }

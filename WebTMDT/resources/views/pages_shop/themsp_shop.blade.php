@@ -10,44 +10,37 @@
                     <div class="col-lg-7" style="padding-bottom:120px">
                         <form action="" method="POST">
                             <div class="form-group">
-                                <label>Tên sản phẩm</label>
+                                <label>Tên sản phẩm:</label>
                                 <input class="form-control" name="tensp" placeholder="" />
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
-                                <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
+                                <label>Giá:</label>
+                                <input class="form-control" name="txtPrice" placeholder="Đơn vị VNĐ" />
                             </div>
                             <div class="form-group">
-                                <label>Intro</label>
-                                <textarea class="form-control" rows="3" name="txtIntro"></textarea>
+                                <label>Loại sản phẩm</label>
+                                <select>
+                                    <option name="thoitrang">Thời trang</option>
+                                    <option name="thethao">Thể thao</option>
+                                    <option name="amthuc"> Ẩm thực</option>
+                                    <option name="vpp">Văn phòng phẩm</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Content</label>
-                                <textarea class="form-control" rows="3" name="txtContent"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Images</label>
+                                <label>Hình ảnh</label>
                                 <input type="file" name="fImages">
                             </div>
                             <div class="form-group">
-                                <label>Product Keywords</label>
-                                <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+                                <label>Xuất sứ</label>
+                                <textarea class="form-control"  name="txtContent"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Product Description</label>
+                                <label>Mô tả sản phẩm</label>
                                 <textarea class="form-control" rows="3"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label>Product Status</label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="1" checked="" type="radio">Visible
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="2" type="radio">Invisible
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-default">Product Add</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                           
+                            <button type="submit" class="btn btn-success">Thêm</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
                         <form>
                     </div>
                 </div>

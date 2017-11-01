@@ -74,7 +74,7 @@ Route::get('taoshop',[
 	'as'	=>'taoshop',
 	'uses'	=>'pagesController@taoshop'
 ]);
-Route::get('qlshop',[
+Route::get('qlshop/{id}',[
 	'as'	=>'qlshop',
 	'uses'	=>'pagesController@qlshop'
 ]);
@@ -85,6 +85,14 @@ Route::post('taoshop',[
 ]);
 
 //===========================SHOP=====================================//
+Route::get('themsp',[
+	'as'	=>'themsp',
+	'uses'	=>'ShopController@themsp'
+]);
+
+
+
+
 //===========================ADMIN====================================//
 Route::get('page_admin',[
 	'as'	=>'page_admin',

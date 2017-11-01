@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSanphamshopTable extends Migration
+class CreateBinhluanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSanphamshopTable extends Migration
      */
     public function up()
     {
-        Schema::create('sanphamshop', function (Blueprint $table) {
+        Schema::create('binhluan', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sanpham_id');
-            $table->integer('shop_id');
-            $table->integer('soluong');
+            $table->integer('user_id');
+            $table->string('noidung');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateSanphamshopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sanphamshop');
+        Schema::dropIfExists('binhluan');
     }
 }

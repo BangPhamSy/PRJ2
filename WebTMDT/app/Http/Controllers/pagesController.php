@@ -7,6 +7,7 @@ use App\Users;
 use Session;
 use Hash;
 use Auth;
+use App\Shop;
 use App\taoshop;
 
 class pagesController extends Controller
@@ -71,8 +72,11 @@ class pagesController extends Controller
     public function taoshop(){
     	return view('pages_client.taoshop');
     }
-    public function qlshop(){
-    	return view('pages_shop.qldonhang_shop');
+    
+    public function qlshop($id){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+    	return view('pages_shop.qldonhang_shop',['shop'=>$shop]);
     }
     public function post_createshop(Request $request){
     	$this->validate($request,[

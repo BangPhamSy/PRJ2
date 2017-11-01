@@ -5,8 +5,8 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> +BKHN</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> teamproject2@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -35,23 +35,23 @@
 						<div class="btn-group pull-right">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
+									Hà Nội
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
+									<li><a href="#">Ngoại thành</a></li>
+									<li><a href="#">Nội thành</a></li>
 								</ul>
 							</div>
 							
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									DOLLAR
+									TP.HCM
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Canadian Dollar</a></li>
-									<li><a href="#">Pound</a></li>
+									<li><a href="#">Quận 1</a></li>
+									<li><a href="#">Quận 2</a></li>
 								</ul>
 							</div>
 						</div>
@@ -108,10 +108,18 @@
                                 </li> -->
                                 
                                 @if(Auth::check())
-                                	<li><a href="{{route('qlshop')}}">Quản lí Shop </a></li>
+                                	<li class="dropdown"><a href="#">Shop của tôi </a>
+                                	
+	                                	<ul role="menu" class="sub-menu">
+	                                		@foreach($list_shop as $ls)
+	                                        	<li><a href="qlshop/{{ $ls->id }}">{{$ls->tenshop}}</a></li>
+											 @endforeach
+	                                    </ul>
+	                                
+                                	</li>
 									<li><a href="{{route('taoshop')}}">Tạo shop mới</a></li>
 								@endif
-								<li><a href="contact-us.html">Contact</a></li>
+								<li><a href="contact-us.html">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>

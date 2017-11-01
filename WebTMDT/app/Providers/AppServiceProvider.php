@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Shop;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('header_client',function($view){
+         if(Auth::check()){
+            $list_shop = Shop::where('user_id',Auth::User()->id)->get();
+            $view->with('list_shop',$list_shop);
+         }
+        });
+       
     }
 
     /**

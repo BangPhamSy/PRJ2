@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaoshopTable extends Migration
+class CreateDonhangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateTaoshopTable extends Migration
      */
     public function up()
     {
-        Schema::create('taoshop', function (Blueprint $table) {
+        Schema::create('donhang', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('name');
-            $table->string('tenshop');
+            $table->integer('donhangshop_id');
+            $table->double('tongtien');
+            $table->string('hoten');
+            $table->string('email');
+            $table->string('sodienthoai');
+            $table->string('diachi');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateTaoshopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taoshop');
+        Schema::dropIfExists('donhang');
     }
 }

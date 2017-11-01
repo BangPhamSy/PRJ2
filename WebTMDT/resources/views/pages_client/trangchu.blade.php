@@ -15,9 +15,9 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Hãy đến với chúng tôi</h2>
+									<p>Mua sắm thả ga với những ưu đãi cực lớn cùng những phần quà giá trị! </p>
+									<button type="button" class="btn btn-default get">Đăng kí ngay</button>
 								</div>
 								<div class="col-sm-6">
 									<img src="eshopper/images/home/girl1.jpg" class="girl img-responsive" alt="" />
@@ -27,9 +27,9 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>100% Responsive Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Hãy đến với chúng tôi</h2>
+									<p>Mua sắm thả ga với những ưu đãi cực lớn cùng những phần quà giá trị! </p>
+									<button type="button" class="btn btn-default get">Đăng kí ngay</button>
 								</div>
 								<div class="col-sm-6">
 									<img src="eshopper/images/home/girl2.jpg" class="girl img-responsive" alt="" />
@@ -40,9 +40,9 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>E</span>-SHOPPER</h1>
-									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Hãy đến với chúng tôi</h2>
+									<p>Mua sắm thả ga với những ưu đãi cực lớn cùng những phần quà giá trị! </p>
+									<button type="button" class="btn btn-default get">Đăng kí ngay</button>
 								</div>
 								<div class="col-sm-6">
 									<img src="eshopper/images/home/girl3.jpg" class="girl img-responsive" alt="" />
@@ -69,7 +69,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
+						<h2>Danh mục sản phẩm</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -209,7 +209,7 @@
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
+						<h2 class="title text-center">Các sản phẩm </h2>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
