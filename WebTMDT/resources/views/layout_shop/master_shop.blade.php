@@ -12,6 +12,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
     <!-- MetisMenu CSS -->
     <link href="admin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
@@ -64,6 +65,7 @@
         });
     });
     </script>
+     <script type="text/javascript" language="javascript" src="admin/ckeditor/ckeditor.js" ></script>
 </body>
 
 </html>

@@ -21,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('list_shop',$list_shop);
          }
         });
+        view()->composer('header_shop',function($view){
+           
+            //$view->with('shop',$shop);
+        });
        
     }
 

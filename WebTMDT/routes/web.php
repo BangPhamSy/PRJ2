@@ -21,7 +21,7 @@ Route::get('login',[
 	'as'=>'login',
 	'uses'=>'pagesController@dangnhap'
 ]);
-Route::get('shop',[
+/*Route::get('shop',[
 	'as'=>'shop',
 	'uses'=>'pagesController@shop'
 ]);
@@ -74,10 +74,8 @@ Route::get('taoshop',[
 	'as'	=>'taoshop',
 	'uses'	=>'pagesController@taoshop'
 ]);
-Route::get('qlshop/{id}',[
-	'as'	=>'qlshop',
-	'uses'	=>'pagesController@qlshop'
-]);
+
+
 Route::post('taoshop',[
 
 	'as'	=>'taoshop',
@@ -85,10 +83,32 @@ Route::post('taoshop',[
 ]);
 
 //===========================SHOP=====================================//
-Route::get('themsp',[
-	'as'	=>'themsp',
-	'uses'	=>'ShopController@themsp'
-]);
+
+
+Route::group(['prefix'=>'qlshop'],function(){
+
+	Route::get('shop/{id}','ShopController@shop');
+	Route::group(['prefix'=>'shop/{id}'],function(){
+
+		Route::group(['prefix'=>'sanpham'],function(){
+			Route::get('danhsach','ShopController@danhsach_sp');
+
+			Route::get('them','ShopController@getProduct');
+			Route::post('them','ShopController@postProduct');
+		});
+
+		Route::group(['prefix'=>'donhang'],function(){
+			
+		});
+
+		Route::group(['prefix'=>'kho'],function(){
+			
+		});
+		
+	});
+
+	
+});
 
 
 

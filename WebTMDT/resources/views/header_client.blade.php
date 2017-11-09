@@ -112,7 +112,7 @@
                                 	
 	                                	<ul role="menu" class="sub-menu">
 	                                		@foreach($list_shop as $ls)
-	                                        	<li><a href="qlshop/{{ $ls->id }}">{{$ls->tenshop}}</a></li>
+	                                        	<li><a href="qlshop/shop/{{ $ls->id }}">{{$ls->tenshop}}</a></li>
 											 @endforeach
 	                                    </ul>
 	                                

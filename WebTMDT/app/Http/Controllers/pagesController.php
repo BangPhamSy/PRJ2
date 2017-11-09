@@ -12,6 +12,7 @@ use App\taoshop;
 
 class pagesController extends Controller
 {
+   
     public function post_dangki(Request $request){
     	$this->validate($request,
     		[
@@ -73,11 +74,9 @@ class pagesController extends Controller
     	return view('pages_client.taoshop');
     }
     
-    public function qlshop($id){
-        $shop = Shop::find($id);
-        view()->share('shop',$shop);
-    	return view('pages_shop.qldonhang_shop',['shop'=>$shop]);
-    }
+    
+
+
     public function post_createshop(Request $request){
     	$this->validate($request,[
     		'tenshop' =>'required|unique:shop,tenshop'

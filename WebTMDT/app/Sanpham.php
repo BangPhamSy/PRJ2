@@ -11,4 +11,8 @@ class Sanpham extends Model
   	{
   		return $this->belongsToMany('App\Sanphamshop');
   	}
+  	public function Loaisanpham()
+  	{
+  		return $this->belongsTo('App\Loaisanpham');
+  	}
 }

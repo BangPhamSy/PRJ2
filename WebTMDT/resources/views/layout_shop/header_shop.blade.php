@@ -8,7 +8,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Trang quản lí Shop</a>
+                <a class="navbar-brand" href="index.html">Trang quản lí Shop <b>{{$shop->tenshop}}</b>
+                    -Chủ sở hữu:{{$shop->name}}
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -19,7 +21,9 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ $shop->tenshop }}</a>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>{{$shop->tenshop}}</a>
+                       
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -51,13 +55,13 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Quản lí sản phẩm<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-bar-chart-o fa-fw"></i>Quản lí sản phẩm<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh sách sản phẩm</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/danhsach">Danh sách sản phẩm</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('themsp',$shop->id)}}">Thêm sản phẩm mới</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/them">Thêm sản phẩm mới</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
