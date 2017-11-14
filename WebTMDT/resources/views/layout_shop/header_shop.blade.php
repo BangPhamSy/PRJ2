@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Trang quản lí Shop <b>{{$shop->tenshop}}</b>
+                <a class="navbar-brand">Trang quản lí Shop <b>{{$shop->tenshop}}</b>
                     -Chủ sở hữu:{{$shop->name}}
                 </a>
             </div>
@@ -52,10 +52,21 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thống kê<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Sản phẩm bán chạy nhất</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tổng doanh thu Shop</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-bar-chart-o fa-fw"></i>Quản lí sản phẩm<span class="fa arrow"></span></a>
+                            <a href="">
+                                <i class="fa fa-apple" aria-hidden="true"></i> Quản lí sản phẩm<span class="fa arrow"></span>
+                            </a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="qlshop/shop/{{$shop->id}}/sanpham/danhsach">Danh sách sản phẩm</a>
@@ -67,19 +78,53 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-cube fa-fw"></i>Quản lí đơn hàng<span class="fa arrow"></span></a>
+                            <a href="#">
+                                <i class="fa fa-cc" aria-hidden="true"></i>
+                                    Quản lí khuyến mại<span class="fa arrow"></span>
+                            </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List Product</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/khuyenmai/danhsach">Danh sách sản phẩm khuyến mại</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add Product</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc">Chiến lược giảm giá</a>
+                                </li>
+                                 <li>
+                                    <a href="qlshop/shop/{{$shop->id}}/khuyenmai/tichdiem">Danh sách tích điểm của khách hàng</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <li>
+                            <a href="#">
+                                <i class="fa fa-gift" aria-hidden="true"></i>
+                                Quản lí đơn hàng<span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="qlshop/shop/{{$shop->id}}/donhang/danhsach">Đơn hàng chưa thanh toán</a>
+                                </li>
+                                <li>
+                                    <a href="#">Đơn hàng đã thanh toán</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i>Quản lí kho<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i>Quản lí kho<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="qlshop/shop/{{$shop->id}}/khohang/danhsach">Sản phẩm kho</a>
+                                </li>
+                               
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <li>
+                            <a href="#">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                Quản lí bình luận<span class="fa arrow"></span>
+                            </a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#">List User</a>

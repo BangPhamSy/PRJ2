@@ -95,14 +95,28 @@ Route::group(['prefix'=>'qlshop'],function(){
 
 			Route::get('them','ShopController@getProduct');
 			Route::post('them','ShopController@postProduct');
+			Route::get('sua/{idsp}','ShopController@getUpdate');
+			Route::post('sua/{idsp}','ShopController@postUpdate');
 		});
+		//HẾT QUẢN LÍ SẢN PHẨM
 
 		Route::group(['prefix'=>'donhang'],function(){
-			
+			Route::get('danhsach','ShopController@getDonhang');
+			Route::get('chitiet','ShopController@getChitietdon');
 		});
+			//HẾT QUẢN LÍ ĐƠN HÀNG
 
-		Route::group(['prefix'=>'kho'],function(){
-			
+		Route::group(['prefix'=>'khuyenmai'],function(){
+			Route::get('danhsach','ShopController@getSanphamkhuyenmai');
+			Route::get('chapnhan','ShopController@getChapnhan');
+			Route::get('chienluoc','ShopController@getChienluockhuyenmai');
+			Route::get('tichdiem','ShopController@getTichdiem');
+		});
+		//HẾT QUẢN LÍ KHUYẾN MẠI
+		Route::group(['prefix'=>'khohang'],function(){
+
+			Route::get('danhsach','ShopController@getKho');
+
 		});
 		
 	});

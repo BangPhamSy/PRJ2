@@ -63,6 +63,12 @@
         $('#dataTables-example').DataTable({
                 responsive: true
         });
+
+       /* $(document)
+            .on('click', '.accept-discount', function (event) {
+                let link = $(this).data('link');
+                location.href = link;
+            })*/
     });
     </script>
      <script type="text/javascript" language="javascript" src="admin/ckeditor/ckeditor.js" ></script>

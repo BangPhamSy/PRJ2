@@ -18,7 +18,7 @@ class pagesController extends Controller
     		[
     			'email'		=>'required|email|unique:users,email',
     			'password'	=>'required|min:6|max:20',
-    			'name'	=>'required',
+    			'name'	=>'required|unique:users,name',
     		],
 
     		[
@@ -27,6 +27,7 @@ class pagesController extends Controller
     			'email.unique'		=>'Email đã có người sử dụng',
     			'password.required'	=>'Vui lòng nhập password',
     			'name.required'		=>'Vui lòng nhập tên',
+                'name.unique'       =>'Tên tài khoản đã tồn tại',
     			'password.min'		=>'Mật khẩu ít nhất 6 kí tự'
     		]
     	);

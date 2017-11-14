@@ -1,10 +1,10 @@
 @extends('layout_shop.master_shop')
-
 @section('content')
-	 <div class="row">
+	
+               <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Danh sách
-                            <small>Sản phẩm</small>
+                            <small>Sản phẩm khuyến mại</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -17,11 +17,7 @@
                                 <th>Giá</th>
                                 <th>Tỉ lệ khuyến mại</th>
                                 <th>Hình ảnh</th>
-                                <th>Loại sản phẩm</th>
-                                <th>Xuất sứ</th>
-                                <th>Mô tả</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Chấp nhận</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,18 +31,21 @@
                                 <td>
                                     <img src="upload/{{$list->hinhanh}}" style="height: 50px;">
                                 </td>
-                                <td>{{$list->Loaisanpham->tenloaisanpham}}</td>
-                                <td>{{$list->xuatsu}}</td>
-                                <td>{{$list->mota}}</td>
                                 
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/sua/{{$list->id}}">Edit</a>
+                                <td class="center">
+                                           
+                                   <!--  <label for="sp{{$list->id}}" class="accept-discount" data-link="qlshop/shop/{{$shop->id}}/sanpham/chapnhan/{{$list->id}}">
+                                         <input type="checkbox" name="" id="sp{{$list->id}}">
+                                    </label> -->
+                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/chapnhan/{{$list->id}}">Thêm</a>
+                                    
                                 </td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
+                                
                             </tr>
                         @endforeach
                             
                         </tbody>
                     </table>
                 </div>
+
 @endsection
