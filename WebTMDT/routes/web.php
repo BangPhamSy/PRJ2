@@ -14,9 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('index',function(){
-	return view('pages_client.trangchu');
-})->name('index');
+Route::get('index','pagesController@trangchu')->name('index');
 Route::get('login',[
 	'as'=>'login',
 	'uses'=>'pagesController@dangnhap'
@@ -36,18 +34,18 @@ Route::get('contact',[
 	'as'=>'contact',
 	'uses'=>'pagesController@contact'
 ]);
-Route::get('product_detail',[
-	'as'=>'product_detail',
-	'uses'=>'pagesController@chitietsanpham'
-]);
-Route::get('checkout',[
-	'as'=>'product_detail',
+// Route::get('product_detail',[
+// 	'as'=>'product_detail',
+// 	'uses'=>'pagesController@chitietsanpham'
+// ]);
+/*Route::get('checkout',[
+	'as'=>'checkout',
 	'uses'=>'pagesController@donhang'
-]);
-Route::get('blog_single',[
-	'as'=>'product_detail',
-	'uses'=>'pagesController@chitietsanpham'
-]);
+]);*/
+// Route::get('blog_single',[
+// 	'as'=>'blog_single',
+// 	'uses'=>'pagesController@blog_single'
+// ]);
 Route::get('dangki',[
 	'as'	=>'dangki',
 	'uses'	=>'pagesController@dangki'
@@ -81,6 +79,9 @@ Route::post('taoshop',[
 	'as'	=>'taoshop',
 	'uses'	=>'pagesController@post_createshop'
 ]);
+Route::group(['prefix'=>'index'],function(){
+	Route::get('sanpham/{id}','pagesController@xemSanPham');
+});
 
 //===========================SHOP=====================================//
 
@@ -108,7 +109,9 @@ Route::group(['prefix'=>'qlshop'],function(){
 
 		Route::group(['prefix'=>'khuyenmai'],function(){
 			Route::get('danhsach','ShopController@getSanphamkhuyenmai');
-			Route::get('chapnhan','ShopController@getChapnhan');
+			Route::get('chapnhan/{idsp}','ShopController@getChapnhan');
+			Route::get('capnhat','ShopController@getCapnhat');
+			Route::post('capnhat','ShopController@postCapnhat');
 			Route::get('chienluoc','ShopController@getChienluockhuyenmai');
 			Route::get('tichdiem','ShopController@getTichdiem');
 		});

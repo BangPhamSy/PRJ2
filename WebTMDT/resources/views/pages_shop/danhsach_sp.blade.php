@@ -18,7 +18,6 @@
                                 <th>Tỉ lệ khuyến mại</th>
                                 <th>Hình ảnh</th>
                                 <th>Loại sản phẩm</th>
-                                <th>Xuất sứ</th>
                                 <th>Mô tả</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -30,13 +29,12 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{$i++}}</td>
                                 <td>{{$list->tensanpham}}</td>
-                                <td>{{$list->gia}}</td>
+                                <td>{{number_format($list->gia)}}đ</td>
                                 <td>{{$list->tilekhuyenmai}}%</td>
                                 <td>
                                     <img src="upload/{{$list->hinhanh}}" style="height: 50px;">
                                 </td>
                                 <td>{{$list->Loaisanpham->tenloaisanpham}}</td>
-                                <td>{{$list->xuatsu}}</td>
                                 <td>{{$list->mota}}</td>
                                 
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i>

@@ -17,7 +17,7 @@
                                 <th>Giá</th>
                                 <th>Tỉ lệ khuyến mại</th>
                                 <th>Hình ảnh</th>
-                                <th>Chấp nhận</th>
+                                <th>Thêm vào danh sách khuyến mại</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,21 +26,19 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{$i++}}</td>
                                 <td>{{$list->tensanpham}}</td>
-                                <td>{{$list->gia}}</td>
+                                <td>{{number_format($list->gia)}}đ</td>
                                 <td>{{$list->tilekhuyenmai}}%</td>
                                 <td>
                                     <img src="upload/{{$list->hinhanh}}" style="height: 50px;">
                                 </td>
-                                
-                                <td class="center">
-                                           
-                                   <!--  <label for="sp{{$list->id}}" class="accept-discount" data-link="qlshop/shop/{{$shop->id}}/sanpham/chapnhan/{{$list->id}}">
-                                         <input type="checkbox" name="" id="sp{{$list->id}}">
-                                    </label> -->
-                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/chapnhan/{{$list->id}}">Thêm</a>
+                                @if($list->trangthai==1)
+                                    <td style="color:#12f112;">Đã thêm </td>
                                     
-                                </td>
-                                
+                                @else
+                                     <td >
+                                        <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chapnhan/{{$list->id}}"  style="color:red;">Thêm ngay</a>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                             

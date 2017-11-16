@@ -55,10 +55,7 @@
                                 <label>Hình ảnh</label>
                                 <input type="file" class="form-control"  name="hinhanh">
                             </div>
-                            <div class="form-group">
-                                <label>Xuất sứ</label>
-                                <textarea class="form-control"  name="xuatsu"></textarea>
-                            </div>
+                           
                             <div class="form-group">
                                 <label>Mô tả sản phẩm</label>
                                 <textarea id="demo" class="ckeditor" name="mota" rows="3"></textarea>

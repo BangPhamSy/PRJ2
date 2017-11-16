@@ -9,6 +9,7 @@ use Hash;
 use Auth;
 use App\Shop;
 use App\taoshop;
+use App\Sanpham;
 
 class pagesController extends Controller
 {
@@ -75,7 +76,10 @@ class pagesController extends Controller
     	return view('pages_client.taoshop');
     }
     
-    
+    public function xemSanPham($id){
+        $sanpham = Sanpham::find($id);
+        return view('pages_client.product_detail',compact('sanpham'));
+    }
 
 
     public function post_createshop(Request $request){
@@ -98,5 +102,11 @@ class pagesController extends Controller
     	}
 	    	
     	return redirect()->back()->with('success','Vui lòng đợi phê duyệt');
+    }
+
+
+    public function trangchu(){
+        $danhsach = Sanpham::where('tilekhuyenmai','>','0')->paginate(6);
+        return view('pages_client.trangchu',compact('danhsach'));
     }
 }

@@ -50,6 +50,7 @@ class ShopController extends Controller
         $new_product->mota 			= $request->mota;
         $new_product->tilekhuyenmai = $request->tilekhuyenmai;
         $new_product->loaisanpham_id= $request->loaisanpham;
+        $new_product->trangthai = 0;
 
         if($request->hasFile('hinhanh')){
         	$file = $request->file('hinhanh');
@@ -148,23 +149,37 @@ class ShopController extends Controller
         $list_sp = Sanpham::where('shop_id',$id)->paginate(5);
     	return view('pages_shop.sp_khuyenmai',compact('shop','list_sp'));
     }
-    public function getChapnhan($id){
+    public function getChapnhan($id,$idsp){
     	$shop = Shop::find($id);
         view()->share('shop',$shop);
-        $list_sp = Sanpham::where('shop_id',$id)->paginate(5);
-    	return view('pages_shop.sp_khuyenmai',compact('shop','list_sp'));
+        $sp = Sanpham::find($idsp);
+        $sp->trangthai =1;
+        $capnhat =Sanpham::where('id',$idsp)->update(['trangthai'=>$sp->trangthai]);
+
+    	return redirect()->back()->with('thanhcong','Đã thêm sản  thành công');
     }
 
     public function getChienluockhuyenmai($id){
     	$shop = Shop::find($id);
         view()->share('shop',$shop);
-    	return view('pages_shop.chienluoc_km',compact('shop'));
+        $danhsach = Sanpham::where('trangthai','1')->paginate(10);
+    	return view('pages_shop.chienluoc_km',compact('shop','danhsach'));
     }
     public function getTichdiem($id){
     	$shop = Shop::find($id);
         view()->share('shop',$shop);
     	return view('pages_shop.tichdiem',compact('shop'));
     }
+    public function postCapnhat($id,Request $request){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $capnhat = new Sanpham();
+        $capnhat->tilekhuyenmai = $request->tilekhuyenmai;
+        $capnhattile = Sanpham::where('trangthai','1')->update(['tilekhuyenmai'=>$capnhat->tilekhuyenmai]);
+        return redirect()->back()->with('thanhcong','Cập nhật tỉ lệ khuyến mại thành công');
+
+    }
+
 //====================QUẢN LÝ KHO HÀNG==============================//
     public function getKho($id){
     	$shop = Shop::find($id);
