@@ -21,7 +21,7 @@ class CreateSanphamTable extends Migration
             $table->string('hinhanh');
             $table->integer('gia');
             $table->integer('tilekhuyenmai');
-            $table->integer('soluong');
+            $table->integer('thoigiankm');
             $table->string('mota');
             $table->timestamps();
         });

@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sanphamshop extends Model
 {
-    protected $table = "sanpham";
-  	public function Shop()
-  	{
-  		return $this->belongsToMany('App\Shop');
-  	}
+    protected $table = "sanphamshop";
   	public function Users()
   	{
   		return $this->belongsToMany('App\Users');
   	}
+  	public function Sanpham()
+  	{
+  		return $this->belongsTo('App\Sanpham','sanpham_id','id');
+  	}
+
+
+     public $timestamps = false;
 }

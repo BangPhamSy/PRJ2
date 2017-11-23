@@ -55,6 +55,14 @@
                                 <label>Hình ảnh</label>
                                 <input type="file" class="form-control"  name="hinhanh">
                             </div>
+                            <div class="form-group">
+                                <label>Hãng sản xuất</label>
+                                <input type="text" class="form-control"  name="hangsx">
+                            </div>
+                            <div class="form-group">
+                                <label>Số lượng</label>
+                                <input type="text" class="form-control"  name="soluong">
+                            </div>
                            
                             <div class="form-group">
                                 <label>Mô tả sản phẩm</label>

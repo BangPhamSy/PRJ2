@@ -60,18 +60,48 @@
 								<img src="eshopper/images/product-details/rating.png" alt="" />
 								<span>
 									<span>{{number_format($sanpham->gia)}}đ</span>
-									
+								@if($sanpham->Sanphamshop->soluongnhap>0)	
 									<button type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										<a href="{{route('giohang')}}">Thêm vào giỏ hàng</a>
+									</button>
+								@else
+									<button type="button" class="btn btn-fefault cart" disabled>
 										<i class="fa fa-shopping-cart"></i>
 										Thêm vào giỏ hàng
 									</button>
+								@endif
 								</span>
-								<p><b>Tình trạng:</b>Còn hàng</p>
-								<p><b>Khuyến mại:</b><i style="color: red;">{{$sanpham->tilekhuyenmai}}%</i></p>
-								<p>
-									<b>Chỉ còn:</b>
-									<b style="color: red;">{{number_format($sanpham->gia-$sanpham->gia*$sanpham->tilekhuyenmai/100)}}đ</b>
-								</p>
+								@if($sanpham->Sanphamshop->soluongnhap>0)
+								<p><b>Tình trạng:</b><i style="color:green">Còn hàng</i></p>
+								@else
+									<p><b>Tình trạng:</b><i style="color:red">Hết hàng</i></p>
+								@endif
+
+								@if($sanpham->kmtile==0)
+									<p>
+										<b>Khuyến mại:</b>
+										<i style="color: red;">{{$sanpham->tilekhuyenmai}}%</i>
+									</p>
+									<p>
+										<b>Chỉ còn:</b>
+										<b style="color: red;font-size: 200%;">{{number_format($sanpham->gia-$sanpham->gia*$sanpham->tilekhuyenmai/100)}}đ</b>
+									</p>
+								@else
+									<p><b>Khuyến mại:</b><i style="color: red;">{{$sanpham->kmtile}}%</i></p>
+									<p>
+										<b>Còn lại duy nhất:
+											<i style="color: red;">
+												{{ROUND((strtotime($sanpham->thoigiankmtile)-strtotime(date('Y-m-d H:i:s')))/86400)}}
+                                        		ngày
+											</i>
+										</b>
+									</p>
+									<p>
+										<b>Giá sốc:</b>
+										<b style="color: red;font-size: 200%;">{{number_format($sanpham->gia-$sanpham->gia*$sanpham->kmtile/100)}}đ</b>
+									</p>
+								@endif
 								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
@@ -84,140 +114,7 @@
 								<li class="active"><a href="#reviews" data-toggle="tab">Bình luận</a></li>
 							</ul>
 						</div>
-					<!-- 	<div class="tab-content">
-							<div class="tab-pane fade" id="details" >
-								<div class="col-sm-12">
-									<div class="product-image-wrapper">
-										{{$sanpham->mota}}
-									</div>
-								</div>
-								 <div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div> -->
-								<!-- <div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> 
-						<!-- 	<div class="tab-pane fade" id="companyprofile" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> -->
-							
-							<!-- <div class="tab-pane fade" id="tag" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> -->
-							
+					
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
 									<div class="comment">

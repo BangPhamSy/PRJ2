@@ -109,4 +109,10 @@ class pagesController extends Controller
         $danhsach = Sanpham::where('tilekhuyenmai','>','0')->paginate(6);
         return view('pages_client.trangchu',compact('danhsach'));
     }
+    public function giohang(){
+        return view('pages_client.cart');
+    }
+    public function thongtindonhang(){
+        return view('pages_client.checkout');
+    }
 }

@@ -69,7 +69,17 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/danhsach">Danh sách sản phẩm</a>
+                                    <a href="">Danh sách sản phẩm</a>
+                                     <ul class="nav nav-third-level">
+                                        @foreach($loaisp as $lsp)
+                                            <li>
+                                                <a href="qlshop/shop/{{$shop->id}}/sanpham/danhsach/{{$lsp->id}}">
+                                                    {{$lsp->tenloaisanpham}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                       
+                                     </ul>
                                 </li>
                                 <li>
                                     <a href="qlshop/shop/{{$shop->id}}/sanpham/them">Thêm sản phẩm mới</a>
@@ -87,11 +97,18 @@
                                     <a href="qlshop/shop/{{$shop->id}}/khuyenmai/danhsach">Danh sách sản phẩm khuyến mại</a>
                                 </li>
                                 <li>
-                                    <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc">Chiến lược giảm giá</a>
+                                    <a href="">Chiến lược giảm giá</a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/tile">Theo tỉ lệ</a>
+                                        </li>
+                                        <li>
+                                            <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/donggia">Đồng giá</a>
+                                        </li>
+                                       
+                                     </ul>
                                 </li>
-                                 <li>
-                                    <a href="qlshop/shop/{{$shop->id}}/khuyenmai/tichdiem">Danh sách tích điểm của khách hàng</a>
-                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -114,7 +131,17 @@
                             <a href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i>Quản lí kho<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="qlshop/shop/{{$shop->id}}/khohang/danhsach">Sản phẩm kho</a>
+                                    <a href="">Sản phẩm kho</a>
+                                     <ul class="nav nav-third-level">
+                                        @foreach($loaisp as $lsp)
+                                            <li>
+                                                <a href="qlshop/shop/{{$shop->id}}/khohang/danhsach/{{$lsp->id}}">
+                                                    {{$lsp->tenloaisanpham}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                       
+                                     </ul>
                                 </li>
                                
                             </ul>

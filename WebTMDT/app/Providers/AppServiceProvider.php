@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Shop;
+use App\Loaisanpham;
+use App\Sanpham;
 use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,10 +23,20 @@ class AppServiceProvider extends ServiceProvider
             $view->with('list_shop',$list_shop);
          }
         });
-        view()->composer('header_shop',function($view){
+        view()->composer('layout_shop.header_shop',function($view){
            
-            //$view->with('shop',$shop);
+            $loaisp = Loaisanpham::all();
+            $view->with('loaisp',$loaisp);
         });
+        view()->composer('sidebar_client',function($view){
+            $sanpham = Sanpham::all();
+            $view->with('sanpham',$sanpham);
+        });
+        view()->composer('sidebar_client',function($view){
+            $loaisanpham = Loaisanpham::all();
+            $view->with('loaisanpham',$loaisanpham);
+        });
+       
        
     }
 

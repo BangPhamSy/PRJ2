@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use\App\Shop;
 use\App\Sanpham;
 use\App\Loaisanpham;
-
+use\App\Sanphamshop;
 class ShopController extends Controller
 {
    public function shop($id){
@@ -43,7 +43,7 @@ class ShopController extends Controller
 
     		]);
         $new_product = new Sanpham();
-
+        $sanphamshop = new Sanphamshop();
         $new_product->shop_id 		= $shop->id;
         $new_product->tensanpham 	= $request->tensanpham;
         $new_product->gia 			= $request->gia;
@@ -51,6 +51,7 @@ class ShopController extends Controller
         $new_product->tilekhuyenmai = $request->tilekhuyenmai;
         $new_product->loaisanpham_id= $request->loaisanpham;
         $new_product->trangthai = 0;
+        $new_product->hangsx = strtoupper($request->hangsx);
 
         if($request->hasFile('hinhanh')){
         	$file = $request->file('hinhanh');
@@ -75,15 +76,23 @@ class ShopController extends Controller
         
 
         $new_product->save();
+            $sanphamshop->shop_id = $shop->id;
+            $sanphamshop->sanpham_id = $new_product->id;
+            $sanphamshop->soluongnhap = $request->soluong;
+            $sanphamshop->sodiem = 0;
+            $sanphamshop->soluongxuat = 0;
+           
+            $sanphamshop->save();
+        
         return redirect()->back()->with('thanhcong','Thêm sản phẩm thành công');
     }
 
-     public function danhsach_sp($id)
+     public function danhsach_sp($id,$id_loaisp)
     {
         $shop = Shop::find($id);
         view()->share('shop',$shop);
 
-        $list_sp = Sanpham::where('shop_id',$id)->paginate(5);
+        $list_sp = Sanpham::where('shop_id',$id)->where('loaisanpham_id',$id_loaisp)->paginate(5);
         return view('pages_shop.danhsach_sp',compact('shop','list_sp'));
     }
     public function getUpdate($id,$idsp)
@@ -165,6 +174,18 @@ class ShopController extends Controller
         $danhsach = Sanpham::where('trangthai','1')->paginate(10);
     	return view('pages_shop.chienluoc_km',compact('shop','danhsach'));
     }
+    public function getTile($id){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $danhsach = Sanpham::where('trangthai','1')->paginate(10);
+        return view('pages_shop.tilekm',compact('shop','danhsach'));
+    }
+    public function getDonggia($id){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $danhsach = Sanpham::where('trangthai','1')->paginate(10);
+         return view('pages_shop.donggiakm',compact('shop','danhsach'));
+    }
     public function getTichdiem($id){
     	$shop = Shop::find($id);
         view()->share('shop',$shop);
@@ -179,12 +200,44 @@ class ShopController extends Controller
         return redirect()->back()->with('thanhcong','Cập nhật tỉ lệ khuyến mại thành công');
 
     }
+    public function postDonggia($id,Request $request){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $time  = date('Y-m-d  H:i:s');
+        $newtime = date("Y-m-d H:i:s", (strtotime($time) + 86400 * $request->songay));
+        // var_dump(strtotime($time));
+        // var_dump(date("Y-m-d H:i:s", (strtotime($time) + 86400 * $request->songay)));
+        $capnhattile = Sanpham::where('trangthai','1')->update(['kmdonggia'=>$request->gia,'thoigiankmdonggia'=>$newtime]);
+        return redirect()->back()->with('thanhcong','Cập nhật giá thành công');
+    }
+    public function postTile($id,Request $request){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $time = date('Y-m-d H:i:s');
+        $newtime  = date('Y-m-d H:i:s',(strtotime($time)+86400*$request->songay));
+        $capnhattile = Sanpham::where('trangthai','1')
+        ->update(['kmtile'=>$request->tile,'thoigiankmtile'=>$newtime]);
+        return redirect()->back()->with('thanhcong','Cập nhật tỉ lệ thành công');
+    }
+    // public function checktile(){
+    //     $sanpham = Sanpham::where('trangthai','1');
+    //     if($sanpham->thoigiankmtile == date('Y-m-d H:i:s')) 
+    //     {
+    //         $sanpham->update(['kmtile'=>0,'thoigiankmtile'=>NULL,'trangthai'=>0]);
+    //     }
+    //     if($sanpham->thoigiankmdonggia == date('Y-m-d H:i:s'))
+    //     {
+    //         $sanpham->update(['kmtile'=>0,'thoigiankmdonggia'=>NULL,'trangthai'=>0]);
+    //     }
+    //     return view('pages_shop.tilekm',compact('sanpham'));
+    // }
 
 //====================QUẢN LÝ KHO HÀNG==============================//
-    public function getKho($id){
+    public function getKho($id,$id_loaisp){
     	$shop = Shop::find($id);
         view()->share('shop',$shop);
-    	return view('pages_shop.khohang',compact('shop'));
+        $spkho = Sanpham::where('shop_id',$id)->where('loaisanpham_id',$id_loaisp)->paginate(5);
+    	return view('pages_shop.khohang',compact('shop','spkho'));
     }
 
 }

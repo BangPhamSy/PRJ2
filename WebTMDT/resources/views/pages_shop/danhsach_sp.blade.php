@@ -17,7 +17,7 @@
                                 <th>Giá</th>
                                 <th>Tỉ lệ khuyến mại</th>
                                 <th>Hình ảnh</th>
-                                <th>Loại sản phẩm</th>
+                                <th>Thương hiệu</th>
                                 <th>Mô tả</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -29,12 +29,21 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{$i++}}</td>
                                 <td>{{$list->tensanpham}}</td>
-                                <td>{{number_format($list->gia)}}đ</td>
-                                <td>{{$list->tilekhuyenmai}}%</td>
+                                @if($list->kmdonggia>0)
+                                    <td>{{number_format($list->kmdonggia)}}đ</td>
+                                @else
+                                    <td>{{number_format($list->gia)}}đ</td>
+                                @endif
+                                @if($list->kmtile==0)
+                                    <td>{{$list->tilekhuyenmai}}%</td>
+                                @else
+                                    <td>{{$list->kmtile}}%</td>
+                                @endif
+
                                 <td>
                                     <img src="upload/{{$list->hinhanh}}" style="height: 50px;">
                                 </td>
-                                <td>{{$list->Loaisanpham->tenloaisanpham}}</td>
+                                <td>{{$list->hangsx}}</td>
                                 <td>{{$list->mota}}</td>
                                 
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i>

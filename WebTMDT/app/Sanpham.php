@@ -9,10 +9,11 @@ class Sanpham extends Model
   	protected $table = "sanpham";
   	public function Sanphamshop()
   	{
-  		return $this->belongsToMany('App\Sanphamshop');
+  		return $this->hasOne('App\Sanphamshop');
   	}
   	public function Loaisanpham()
   	{
-  		return $this->belongsTo('App\Loaisanpham');
+  		return $this->belongsTo('App\Loaisanpham','loaisanpham_id','id');
   	}
+
 }

@@ -3,41 +3,47 @@
 	
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Danh sách
-                            <small>số lượng sản phẩm</small>
+                        <h1 class="page-header">Danh sách 
+                            <small></small>
                         </h1>
+                        <p style="color: white;">{{$i=1}}</p>
                     </div>
-                    <!-- /.col-lg-12 -->
+                    
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr align="center">
                                 <th>STT</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Hình ảnh</th>
-                                <th>Loại sản phẩm</th>
+                                <th>Thương hiệu</th>
                                 <th>Số lượng nhập</th>
                                 <th>Số lượng xuất</th>
-                                <th>Ngày tháng nhập</th>
+                                <th>Thời gian nhập</th>
 
                                 
                                 
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($spkho as $lsp)
                             <tr class="odd gradeX" align="center">
-                                <td>1</td>
-                                <td>Giay the thao</td>
-                                <td>....</td>
-                                <td>thời trang</td>
-                                <td>130</td>
-                                <td>20</td>
-                                <td>1/1/2017</td>
+                                <td>{{$i++}}</td>
+                                <td>{{$lsp->tensanpham}}</td>
+                                <td>
+                                    <img style="height:50px; " src="upload/{{$lsp->hinhanh}}">
+                                </td>
+                                <td>{{$lsp->hangsx}}</td>
+                                <td>{{$lsp->Sanphamshop->soluongnhap}}</td>
+                                <td>0</td>
+                                <td>{{$lsp->created_at}}</td>
                                 
                             </tr>
+                        @endforeach
                             
                         </tbody>
                     </table>
                 </div>
+
                 <!-- /.row -->
  
-@endsection
+@endsection 
