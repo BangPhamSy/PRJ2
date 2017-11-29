@@ -17,86 +17,56 @@
 							<td class="price">Giá</td>
 							<td class="quantity">Số lượng</td>
 							<td class="total">Tổng tiền</td>
-							<td></td>
+							<td class="total">Cập nhật</td>
+							<td class="total">Xóa</td>
+
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+						@foreach($content as $item)
+							<tr>
+								<td class="cart_product">
+									<a href=""><img src="upload/{{$item->options->img}}" height=60></a>
+								</td>
+								<td class="cart_description">
+									<h4>
+										<a href="">{{$item->name}}</a>
+									</h4>
+									
+								</td>
+								<td class="cart_price">
+									<p>{{number_format($item->price)}}đ</p>
+								</td>
+								<td class="cart_quantity">
+									<div class="cart_quantity_button">
+										<a class="cart_quantity_up" href=""> + </a>
+										<input class="cart_quantity_input" type="text" name="quantity" 
+										value='{{$item->qty}}' autocomplete="off" size="2">
+										<a class="cart_quantity_down" href=""> - </a>
+									</div>
+								</td>
+								<td class="cart_total">
+									<p class="cart_total_price">{{number_format($item->price*$item->qty)}}đ</p>
+								</td>
+								<!-- <td class="cart_delete">
+									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								</td>
+								<td class="cart_delete">
+									<a class="cart_quantity_delete" href="">
+										<i class="fa fa-refresh" aria-hidden="true"></i>
+									</a>
+								</td> -->
+								<td class="cart_update">
+									<a href=""><i class="fa fa-refresh" aria-hidden="true"></i></a>
+								</td>
+								<td class="cart_remove">
+									<a href="index/xoa-san-pham/{{$item->rowId}}" 
+									onclick="return  confirm('Bạn có muốn xóa không?')"
+										>X</a>
+								</td>
+								
+							</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>
@@ -114,12 +84,21 @@
 				<div class="col-sm-12">
 					<div class="total_area">
 						<ul>
-							<li>Tổng tiền <span>$59</span></li>
-							<li>Phí ship <span>$2</span></li>
+							<li>Tổng tiền: <i style="color:red;font-size: 150%">
+							{{$total_money}} VNĐ</i>
+							</li>
+							<li>Phí ship:
+							@if(floatval(preg_replace('/[^\d.]/', '',$total_money))>=200000)
+							 	<i style="color:red;font-size: 150%">Free</i>
+							@else
+								<i style="color:red;font-size: 150%">{{number_format(20000)}} VNĐ</i>
+							@endif
+							 </li>
+							 <li style="color: green;">Miễn phí ship đối với những đơn hàng trên 200,000 VNĐ</li>
 							
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="{{route('thongtindonhang')}}">Đặt hàng</a>
+							<a class="btn btn-default update" href="index">Tiếp tục mua hàng</a>
+							<a class="btn btn-default check_out" href="index/thongtindonhang">Đặt hàng</a>
 					</div>
 				</div>
 			</div>

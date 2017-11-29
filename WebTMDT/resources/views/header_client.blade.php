@@ -63,11 +63,12 @@
 								<li><a href="#"><i class="fa fa-user"></i>{{Auth::User()->name}}</a></li>
 								<li><a href="{{route('dangxuat')}}"><i class="fa fa-star"></i>Đăng xuất</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i>Đơn hàng</a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a></li>
+								<li><a href="index/gio-hang"><i class="fa fa-shopping-cart"></i>Giỏ hàng({{ Cart::count() }})</a></li>
 								
 								@else
 									<li><a href="{{route('dangki')}}"><i class="fa fa-star"></i>Đăng kí</a></li>
 									<li><a href="{{route('login')}}"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+									
 								@endif
 							</ul>
 						</div>
@@ -90,22 +91,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
-								<!--<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> -->
+								<li><a href="index" class="active">Trang chủ</a></li>
                                 
                                 @if(Auth::check())
                                 	<li class="dropdown"><a href="#">Shop của tôi </a>
@@ -124,8 +110,12 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+						<div class="search pull-right" style="position: relative;">
+							<input type="text"	placeholder="Nhập sản phẩm cần tìm kiếm"
+								 style="width:300px;" />
+							<button style="position: absolute;top: 0;right: 0;bottom: 0;">	
+								Tìm kiếm
+							</button>
 						</div>
 					</div>
 				</div>

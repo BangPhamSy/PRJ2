@@ -51,10 +51,14 @@
                                 </td>
                                 <td>{{number_format($ds->kmdonggia)}}đ</td>
                                 <td>{{$ds->thoigiankmdonggia}}</td>
-                                <td style="color: green;">
-                                {{ROUND((strtotime($ds->thoigiankmdonggia)-strtotime(date('Y-m-d H:i:s')))/86400)}}
-                                    ngày
-                                </td>
+                                @if(strtotime($ds->thoigiankmdonggia)<=strtotime(date('Y-m-d H:i:s')))
+                                    <td style="color: red">Đã hết hạn</td>
+                                @else
+                                    <td style="color: green;">
+                                        {{ROUND((strtotime($ds->thoigiankmdonggia)-strtotime(date('Y-m-d H:i:s')))/86400)}}
+                                        ngày
+                                    </td>
+                                @endif
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
                             </tr>
                         @endforeach

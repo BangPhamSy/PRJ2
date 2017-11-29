@@ -63,7 +63,7 @@
 								@if($sanpham->Sanphamshop->soluongnhap>0)	
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
-										<a href="{{route('giohang')}}">Thêm vào giỏ hàng</a>
+										<a href="index/them-gio-hang/{{$sanpham->id}}">Thêm vào giỏ hàng</a>
 									</button>
 								@else
 									<button type="button" class="btn btn-fefault cart" disabled>

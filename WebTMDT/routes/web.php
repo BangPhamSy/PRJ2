@@ -19,29 +19,14 @@ Route::get('login',[
 	'as'=>'login',
 	'uses'=>'pagesController@dangnhap'
 ]);
-/*Route::get('shop',[
-	'as'=>'shop',
-	'uses'=>'pagesController@shop'
-]);
-/*Route::get('blog',[
-	return view('pages_client.blog');
-]);*/
-Route::get('giohang',[
-	'as'=>'giohang',
-	'uses'=>'pagesController@giohang'
-]);
+// Route::get('giohang',[
+// 	'as'=>'giohang',
+// 	'uses'=>'pagesController@giohang'
+// ]);
 Route::get('contact',[
 	'as'=>'contact',
 	'uses'=>'pagesController@contact'
 ]);
-Route::get('thongtindonhang',[
-	'as'=>'thongtindonhang',
-	'uses'=>'pagesController@thongtindonhang'
-]);
-// Route::get('blog_single',[
-// 	'as'=>'blog_single',
-// 	'uses'=>'pagesController@blog_single'
-// ]);
 Route::get('dangki',[
 	'as'	=>'dangki',
 	'uses'	=>'pagesController@dangki'
@@ -76,7 +61,14 @@ Route::post('taoshop',[
 	'uses'	=>'pagesController@post_createshop'
 ]);
 Route::group(['prefix'=>'index'],function(){
+	Route::get('loai-san-pham/{id}','pagesController@loaisanpham');
+	Route::get('thuong-hieu/{tenth}','pagesController@thuonghieu');
 	Route::get('sanpham/{id}','pagesController@xemSanPham');
+	Route::get('gio-hang','pagesController@gioHang');
+	Route::get('them-gio-hang/{idsp}','pagesController@themgiohang');
+	Route::get('xoa-san-pham/{id}','pagesController@xoa_san_pham');
+	Route::get('thongtindonhang','pagesController@thongtindonhang');
+	Route::post('thongtindonhang','pagesController@postDonhang');
 });
 
 //===========================SHOP=====================================//
@@ -99,7 +91,7 @@ Route::group(['prefix'=>'qlshop'],function(){
 
 		Route::group(['prefix'=>'donhang'],function(){
 			Route::get('danhsach','ShopController@getDonhang');
-			Route::get('chitiet','ShopController@getChitietdon');
+			Route::get('chitiet/{iddon}','ShopController@getChitietdon');
 		});
 			//HẾT QUẢN LÍ ĐƠN HÀNG
 

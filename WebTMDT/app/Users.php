@@ -13,4 +13,7 @@ class Users extends Model
     public function Shop(){
     	return $this->hasMany('App\Shop','user_id','id');
     }
+    public function Tichdiem(){
+    	return $this->hasOne('App\Tichdiem','user_id','id');
+    }
 }

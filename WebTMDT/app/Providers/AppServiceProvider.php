@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Providers;
@@ -6,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Shop;
 use App\Loaisanpham;
 use App\Sanpham;
+use Cart;
 use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,7 +38,17 @@ class AppServiceProvider extends ServiceProvider
             $loaisanpham = Loaisanpham::all();
             $view->with('loaisanpham',$loaisanpham);
         });
-       
+        view()->composer('header_client',function ($view){
+            if(Auth::check()){
+                 $giohang = Cart::count();
+                $view->with('giohang',$giohang);
+            }
+           
+        });
+       view()->composer('sidebar_client',function($view){
+            $thuonghieu = Sanpham::select('hangsx')->distinct()->get();
+            $view->with('thuonghieu',$thuonghieu);
+       });
        
     }
 

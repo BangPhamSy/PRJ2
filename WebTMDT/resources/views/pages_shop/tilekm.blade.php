@@ -53,7 +53,7 @@
                                 <td>{{number_format($ds->gia)}}đ</td>
                                 <td>{{$ds->kmtile}}%</td>
                                 <td>{{$ds->thoigiankmtile}}</td>
-                                @if($ds->thoigiankmtile==date('Y-m-d H:i:s'))
+                                @if(strtotime($ds->thoigiankmtile)<=strtotime(date('Y-m-d H:i:s')))
                                     <td style="color: red">Đã hết hạn</td>
                                 @else
                                     <td style="color: green;">

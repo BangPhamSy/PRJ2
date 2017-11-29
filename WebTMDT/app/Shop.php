@@ -15,4 +15,8 @@ class Shop extends Model
   	{
   		return $this->belongsToMany('App\Shop','shop');
   	}
+  	public function Sanpham()
+  	{
+  		return $this->hasOne('App\Sanpham');
+  	}
 }

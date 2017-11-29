@@ -6,7 +6,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+										<a  href="index/loai-san-pham/{{$lsp->id}}">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
 											{{$lsp->tenloaisanpham}}
 										</a>
@@ -41,10 +41,10 @@
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 									<!-- <li><a href="#"> <span class="pull-right">(50)</span>Nike</a></li> -->
-									@foreach($sanpham as $sp)
+									@foreach($thuonghieu as $th)
 										<li>
-											<a href="#">
-												{{$sp->hangsx}}
+											<a href="index/thuong-hieu/{{$th->hangsx}}">
+												{{$th->hangsx}}
 											</a>
 										</li>
 									@endforeach

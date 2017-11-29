@@ -10,38 +10,52 @@
 			</div><!--/breadcrums-->
 			<div class="shopper-informations">
 				<div class="row">
-					<!-- <div class="col-sm-3">
+					 <div class="col-sm-3">
 						<div class="shopper-info">
-							<p>Shopper Information</p>
+							<p>Số điểm tích lũy của bạn</p>
 							<form>
-								<input type="text" placeholder="Display Name">
-								<input type="text" placeholder="User Name">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
+								<input type="" name="" placeholder="Bạn hiện có: {{$diemthuong->diem}} điểm" disabled>
+								<input type="" name="" placeholder="Số tiền tương ứng quy đổi:{{number_format($tienquydoi)}}VNĐ" disabled>
 							</form>
-							<a class="btn btn-primary" href="">Get Quotes</a>
-							<a class="btn btn-primary" href="">Continue</a>
 						</div>
-					</div> -->
+					</div> 
 					<div class="col-sm-8">
 						<div class="bill-to">
 							<p>Thông tin khách hàng</p>
 							<div class="form-one" style="width: 100%;">
-								<form>
-									<input type="text" placeholder="Tên người nhận">
-									<input type="text" placeholder="Email*">
-									<input type="text" placeholder="Địa chỉ">
-									<input type="text" placeholder="Số điện thoại *">
-									<input type="text" name="" placeholder="Ghi chú">
-									<span>
-										<label><input type="checkbox">Thanh toán khi nhận hàng</label>
-									</span>
-									<span>
-										<label><input type="checkbox">Thanh toán trực tuyến</label>
-									</span>
+								<form action="index/thongtindonhang" method="post">
+									<input type="hidden" name="_token" value="{{csrf_token()}}" >
+									 @if(count($errors)>0)
+		                                <div class="alert alert-danger">
+		                                    @foreach($errors->all() as $err)
+		                                    <ul> 
+		                                        <li>{{$err}}</br></li>
+		                                    </ul>
+                                      
+	                                    	@endforeach
+	                               		 </div>
+                           			 @endif
+                            		 @if(Session::has('thanhcong'))
+                             			<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+                          			  @endif
+									<input type="text" name="hoten" placeholder="Tên người nhận">
+									<input type="text" name="email" placeholder="Email*">
+									<input type="text" name="diachi" placeholder="Địa chỉ">
+									<input type="text" name="sodienthoai" placeholder="Số điện thoại *">
+									<input type="text" name="ghichu" placeholder="Ghi chú">
+									<select style="height: 40px;margin-bottom: 10px;" name="tichdiem">
+										<option selected="">Điểm tích lũy</option>
+										<option value="1">Dùng điểm tích lũy</option>
+										<option value="0">Không sử dụng điểm</option>
+									</select>
+									<select style="height: 40px;margin-bottom: 10px; name="thanhtoan">
+										<option selected="">Hình thức thanh toán</option>
+										<option value="1">Cash Delivery</option>
+										<option value="0">ATM</option>
+									</select>
 									<div class="row" style="text-align: center;margin-bottom: 150px;">
 					
-										<a class="btn btn-primary" href="">Hoàn tất</a>
+										<button class="btn btn-primary" >Hoàn tất</button>
 									</div>
 								
 									

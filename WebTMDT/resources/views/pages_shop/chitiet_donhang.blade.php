@@ -1,6 +1,6 @@
 @extends('layout_shop.master_shop')
 @section('content')
-	
+	       <p style="color: white;">{{$i=1}}</p>
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Chi tiết
@@ -25,17 +25,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($chitietdon as $ct)
                             <tr class="odd gradeX" align="center">
-                                <td>1</td>
-                                <td>giay the thao</td>
-                                <td>.....</td>
-                                <td>100000đ</td>
-                                <td>2</td>
-                                <td>XL</td>
-                                <td>Trắng</td>
+                                <td>{{$i++}}</td>
+                                <td>{{$ct->Sanpham->tensanpham}}</td> 
+                                <td>
+                                    <img src="upload/{{$ct->Sanpham->hinhanh}}" height="50">
+                                </td> 
+                                
+                                <td>{{$ct->soluong}}</td>
+                                <td>{{$ct->size}}</td>
+                                <td>{{$ct->mausac}}</td>
                                 <td>200000đ</td>
                                 <td class="center"> <a href="#">Chỉnh sửa</a></td>
                             </tr>
+                        @endforeach
                             
                         </tbody>
                     </table>
