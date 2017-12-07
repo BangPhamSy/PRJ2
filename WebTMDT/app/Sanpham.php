@@ -17,7 +17,7 @@ class Sanpham extends Model
   	}
   	public function Shop()
   	{
-  		return $this->belongsTo('App\Sanpham','shop_id','id');
+  		return $this->belongsTo('App\Shop','shop_id','id');
   	}
     public function Chitietdon()
     {

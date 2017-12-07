@@ -25,7 +25,8 @@
 												<p>{{$ds->tensanpham}}</p>
 											@if(Auth::check())
 												<a href="index/them-gio-hang/{{$ds->id}}" 
-													class="btn btn-default add-to-cart">
+													class="btn btn-default add-to-cart"
+													onclick="return alert('Thêm vào giỏ hàng thành công')">
 													<i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
 												</a>
 											@else
@@ -77,7 +78,8 @@
 													<p>{{$sp->tensanpham}}</p>
 													@if(Auth::check())
 														<a href="index/them-gio-hang/{{$sp->id}}" 
-															class="btn btn-default add-to-cart">
+															class="btn btn-default add-to-cart"
+															onclick="return alert('Thêm vào giỏ hàng thành công')">
 															<i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
 														</a>
 													@else

@@ -46,10 +46,10 @@
                                 <td>{{$list->hangsx}}</td>
                                 <td>{{$list->mota}}</td>
                                 
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/sua/{{$list->id}}">Edit</a>
+                                <td class="center">
+                                    <a href="qlshop/shop/{{$shop->id}}/sanpham/sua/{{$list->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 </td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"></a></td>
                             </tr>
                         @endforeach
                             

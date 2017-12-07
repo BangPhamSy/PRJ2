@@ -19,6 +19,10 @@ Route::get('login',[
 	'as'=>'login',
 	'uses'=>'pagesController@dangnhap'
 ]);
+Route::get('tim-kiem',[
+	'as'=>'timkiem',
+	'uses'=>'pagesController@timkiem'
+]);
 // Route::get('giohang',[
 // 	'as'=>'giohang',
 // 	'uses'=>'pagesController@giohang'
@@ -91,6 +95,10 @@ Route::group(['prefix'=>'qlshop'],function(){
 
 		Route::group(['prefix'=>'donhang'],function(){
 			Route::get('danhsach','ShopController@getDonhang');
+			Route::get('shiphang/{iddon}','ShopController@getShipHang');
+			Route::get('nhanhang/{iddon}','ShopController@getNhanHang');
+			Route::get('thongtinkh/{iddon}','ShopController@getThongTinKH');
+			Route::get('don-da-thanh-toan','ShopController@getDonDaThanhToan');
 			Route::get('chitiet/{iddon}','ShopController@getChitietdon');
 		});
 			//HẾT QUẢN LÍ ĐƠN HÀNG
@@ -102,8 +110,19 @@ Route::group(['prefix'=>'qlshop'],function(){
 			Route::post('capnhat','ShopController@postCapnhat');
 
 			Route::group(['prefix'=>'chienluoc'],function(){
-				Route::get('tile','ShopController@getTile');
-				Route::get('donggia','ShopController@getDonggia');
+				// Route::get('tile','ShopController@getTile');
+				Route::group(['prefix'=>'tile'],function(){
+					Route::get('danhsach/{id_loaisp}','ShopController@getDanhSachTiLe');
+					Route::get('sanphamkm/{id_sp}','ShopController@getChapnhanSP');
+					Route::get('reset/{id_sp}','ShopController@getReSetTiLe');
+				});
+
+				// Route::get('donggia','ShopController@getDonggia');
+				Route::group(['prefix'=>'donggia'],function(){
+					Route::get('danhsach/{id_loaisp}','ShopController@getDanhSachDongGia');
+					Route::get('sanphamkm/{id_sp}','ShopController@getChapnhanSP');
+					Route::get('reset/{id_sp}','ShopController@getReSetDongGia');
+				});
 				Route::post('donggia','ShopController@postDonggia');
 				Route::post('tile','ShopController@postTile');
 			});

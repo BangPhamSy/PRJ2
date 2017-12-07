@@ -1,5 +1,6 @@
 @extends('master_client')
 @section('content')
+		<p style="color: white;">{{$i=1}}}</p>
 		<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -23,7 +24,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($content as $item)
+						@foreach($grouped as $shop_id=>$items)
+							<tr>
+								<td><p>Đơn hàng số {{$i++}}
+									của shop {{$items[0]->options->tenshop}}
+									</p>
+								</td>
+							</tr>
+							@foreach($items as $item)
 							<tr>
 								<td class="cart_product">
 									<a href=""><img src="upload/{{$item->options->img}}" height=60></a>
@@ -31,7 +39,9 @@
 								<td class="cart_description">
 									<h4>
 										<a href="">{{$item->name}}</a>
+
 									</h4>
+									<i>Shop: {{$item->options->tenshop}}</i>
 									
 								</td>
 								<td class="cart_price">
@@ -48,14 +58,6 @@
 								<td class="cart_total">
 									<p class="cart_total_price">{{number_format($item->price*$item->qty)}}đ</p>
 								</td>
-								<!-- <td class="cart_delete">
-									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-								</td>
-								<td class="cart_delete">
-									<a class="cart_quantity_delete" href="">
-										<i class="fa fa-refresh" aria-hidden="true"></i>
-									</a>
-								</td> -->
 								<td class="cart_update">
 									<a href=""><i class="fa fa-refresh" aria-hidden="true"></i></a>
 								</td>
@@ -66,6 +68,8 @@
 								</td>
 								
 							</tr>
+							@endforeach
+							
 						@endforeach
 					</tbody>
 				</table>

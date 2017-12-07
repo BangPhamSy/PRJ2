@@ -15,7 +15,7 @@
 							<p>Số điểm tích lũy của bạn</p>
 							<form>
 								<input type="" name="" placeholder="Bạn hiện có: {{$diemthuong->diem}} điểm" disabled>
-								<input type="" name="" placeholder="Số tiền tương ứng quy đổi:{{number_format($tienquydoi)}}VNĐ" disabled>
+								<input type="" name="" placeholder="Số tiền tương ứng quy đổi: {{number_format($tienquydoi)}}VNĐ" disabled>
 							</form>
 						</div>
 					</div> 
@@ -48,7 +48,8 @@
 										<option value="1">Dùng điểm tích lũy</option>
 										<option value="0">Không sử dụng điểm</option>
 									</select>
-									<select style="height: 40px;margin-bottom: 10px; name="thanhtoan">
+									<select style="height: 40px;margin-bottom: 10px; 
+										name="thanhtoan">
 										<option selected="">Hình thức thanh toán</option>
 										<option value="1">Cash Delivery</option>
 										<option value="0">ATM</option>

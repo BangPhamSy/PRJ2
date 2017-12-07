@@ -13,7 +13,7 @@ class Shop extends Model
     }
     public function Sanphamshop()
   	{
-  		return $this->belongsToMany('App\Shop','shop');
+  		return $this->belongsTo('App\Shop','shop');
   	}
   	public function Sanpham()
   	{

@@ -8,7 +8,7 @@
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-striped table-bordered table-hover" >
                         <thead>
                             <tr align="center">
                                 <th>STT</th>
@@ -30,11 +30,13 @@
                                 <td>{{$ls->name}}</td>
                                 
                                 <td>{{$ls->created_at}}</td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> 
+                                <td class="center"> 
                                     <a href="{{route('agree_shop',$ls->id)}}">Chấp nhận</a>
                                 </td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i>
-                                    <a href="{{route('cancel_shop',$ls->id)}}"> Delete</a>
+                                <td class="center">
+                                    <a href="{{route('cancel_shop',$ls->id)}}">
+                                        <i class="fa fa-trash-o  fa-fw"></i>
+                                    </a>
                                 </td>
                                 
                             </tr>

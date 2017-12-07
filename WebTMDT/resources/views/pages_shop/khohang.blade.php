@@ -34,7 +34,7 @@
                                 </td>
                                 <td>{{$lsp->hangsx}}</td>
                                 <td>{{$lsp->Sanphamshop->soluongnhap}}</td>
-                                <td>0</td>
+                                <td>{{$lsp->Sanphamshop->soluongxuat}}</td>
                                 <td>{{$lsp->created_at}}</td>
                                 
                             </tr>

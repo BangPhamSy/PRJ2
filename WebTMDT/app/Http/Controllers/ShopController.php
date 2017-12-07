@@ -152,10 +152,35 @@ class ShopController extends Controller
     	$shop = Shop::find($id);
         view()->share('shop',$shop);
         $chitietdon = Chitietdon::where('donhangshop_id',$iddon)->get();
-        // foreach($chitietdon as $ct)
-
-        //      print_r($ct->Sanpham);
          return view('pages_shop.chitiet_donhang',compact('shop','chitietdon'));
+    }
+    public function getShipHang($id,$iddon)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $shiphang = Donhangshop::where('id',$iddon)
+        ->update(['tinhtrangdon'=>1,'created_at'=>date('Y-m-d H:i:s'),'updated_at'=>NULL]);
+         return redirect()->back();
+    }
+    public function getNhanHang($id,$iddon)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $nhanhang = Donhangshop::where('id',$iddon)->update(['nhanhang'=>1]);
+        return redirect()->back();
+    }
+    public function getThongTinKH($id,$iddon)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $thongtinkh = Donhang::where('id',$iddon)->first();
+        return view('pages_shop.thongtinkh',compact('thongtinkh','shop'));
+    }
+    public function getDonDaThanhToan($id){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $dondathanhtoan = Donhangshop::where('tinhtrangdon','1')->where('shop_id',$id)->paginate(6);
+        return view('pages_shop.dondathanhtoan',compact('dondathanhtoan','shop'));  
     }
 
 //====================QUẢN LÝ KHUYẾN MẠI==============================//
@@ -182,50 +207,64 @@ class ShopController extends Controller
         $danhsach = Sanpham::where('trangthai','1')->paginate(10);
     	return view('pages_shop.chienluoc_km',compact('shop','danhsach'));
     }
-    public function getTile($id){
+   
+    public function getDanhSachTiLe($id,$id_loaisp)
+    {
         $shop = Shop::find($id);
         view()->share('shop',$shop);
+        $danhsach = Sanpham::where('loaisanpham_id',$id_loaisp)->where('shop_id',$id)->paginate(7);
+        $reset_ds = Sanpham::where('thoigiankmtile','<=',date('Y-m-d H:i:s'))
+            ->update(['trangthai'=>0,'thoigiankmtile'=>NULL,'kmtile'=>NULL]);
+        return view('pages_shop.danhsachtile',compact('danhsach','shop','reset_ds'));
+    }
 
-        // $time = date('Y-m-d H:i:s');
-        $thoigiankmtile = Sanpham::all();
-        $danhsach = Sanpham::where('trangthai','1')->where('shop_id',$id)->paginate(10);
-        return view('pages_shop.tilekm',compact('shop','danhsach','thoigiankmtile'));
-    }
-    public function getDonggia($id){
-        $shop = Shop::find($id);
-        view()->share('shop',$shop);
-        $danhsach = Sanpham::where('trangthai','1')->where('shop_id',$id)->paginate(10);
-        // $dsdonggia = Sanpham::where('thoigiankmdonggia','<>',NULL)->first();
-        // foreach($dsdonggia as $ds)
-        // {
-        //      $time  = strtotime(date('Y-m-d H:i:s'))-strtotime($dsdonggia->thoigiankmdonggia);
-        //      if($time<=0){
-        //        Sanpham::where('thoigiankmdonggia','<>',NULL)->update(['thoigiankmdonggia'=>NULL,'kmdonggia'=>NULL]);
-        //      }
-              
-        // }
-          return view('pages_shop.donggiakm',compact('shop','danhsach'));
-    }
-    public function getTichdiem($id){
-    	$shop = Shop::find($id);
-        view()->share('shop',$shop);
-    	return view('pages_shop.tichdiem',compact('shop'));
-    }
-    public function postCapnhat($id,Request $request){
-        $shop = Shop::find($id);
-        view()->share('shop',$shop);
-        $capnhat = new Sanpham();
-        $capnhat->tilekhuyenmai = $request->tilekhuyenmai;
-        $capnhattile = Sanpham::where('trangthai','1')->update(['tilekhuyenmai'=>$capnhat->tilekhuyenmai]);
-        return redirect()->back()->with('thanhcong','Cập nhật tỉ lệ khuyến mại thành công');
+    public function getChapnhanSP($id,$id_sp)
+    {
 
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $capnhat =Sanpham::where('id',$id_sp)->update(['trangthai'=>1]);
+        return redirect()->back();
     }
+
+    public function getReSetTiLe($id,$id_sp)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $reset =Sanpham::where('id',$id_sp)
+        ->update(['trangthai'=>0,'thoigiankmtile'=>NULL,'kmtile'=>NULL]);
+        return redirect()->back();
+    }
+
+
+    public function getDanhSachDongGia($id,$id_sp){
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $danhsach = Sanpham::where('loaisanpham_id',$id_sp)->where('shop_id',$id)->paginate(7);
+        
+        $reset_ds = Sanpham::where('thoigiankmdonggia','<=',date('Y-m-d H:i:s'))
+        ->update(['thoigiankmdonggia'=>NULL,'kmdonggia'=>NULL,'trangthai'=>0]);
+        
+        return view('pages_shop.danhsachdonggia',compact('shop','danhsach','reset_ds'));
+    }
+
+    public function getReSetDongGia($id,$id_sp)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $reset =Sanpham::where('id',$id_sp)
+        ->update(['trangthai'=>0,'thoigiankmdonggia'=>NULL,'kmdonggia'=>NULL]);
+        return redirect()->back();
+    }
+    
+   
     public function postDonggia($id,Request $request){
         $shop = Shop::find($id);
         view()->share('shop',$shop);
         $time  = date('Y-m-d  H:i:s');
         $newtime = date("Y-m-d H:i:s", (strtotime($time) + 86400 * $request->songay));
-        $capnhattile = Sanpham::where('trangthai','1')->update(['kmdonggia'=>$request->gia,'thoigiankmdonggia'=>$newtime]);
+        $capnhatgia = Sanpham::where('trangthai','1')
+        ->update(['kmdonggia'=>$request->gia,'thoigiankmdonggia'=>$newtime]);
         return redirect()->back()->with('thanhcong','Cập nhật giá thành công');
     }
     public function postTile($id,Request $request){
@@ -237,18 +276,6 @@ class ShopController extends Controller
         ->update(['kmtile'=>$request->tile,'thoigiankmtile'=>$newtime]);
         return redirect()->back()->with('thanhcong','Cập nhật tỉ lệ thành công');
     }
-    // public function checktile(){
-    //     $sanpham = Sanpham::where('trangthai','1');
-    //     if($sanpham->thoigiankmtile == date('Y-m-d H:i:s')) 
-    //     {
-    //         $sanpham->update(['kmtile'=>0,'thoigiankmtile'=>NULL,'trangthai'=>0]);
-    //     }
-    //     if($sanpham->thoigiankmdonggia == date('Y-m-d H:i:s'))
-    //     {
-    //         $sanpham->update(['kmtile'=>0,'thoigiankmdonggia'=>NULL,'trangthai'=>0]);
-    //     }
-    //     return view('pages_shop.tilekm',compact('sanpham'));
-    // }
 
 //====================QUẢN LÝ KHO HÀNG==============================//
     public function getKho($id,$id_loaisp){

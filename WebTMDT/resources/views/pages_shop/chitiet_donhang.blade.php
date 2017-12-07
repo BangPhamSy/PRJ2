@@ -19,7 +19,7 @@
                                 <th>Size</th>
                                 <th>Màu sắc</th>
                                 <th>Tổng tiền</th>
-                                <th>Chỉnh sửa</th>
+                                
 
                                 
                             </tr>
@@ -32,12 +32,12 @@
                                 <td>
                                     <img src="upload/{{$ct->Sanpham->hinhanh}}" height="50">
                                 </td> 
-                                
+                                <td>{{$ct->Sanpham->gia}}</td>
                                 <td>{{$ct->soluong}}</td>
                                 <td>{{$ct->size}}</td>
                                 <td>{{$ct->mausac}}</td>
-                                <td>200000đ</td>
-                                <td class="center"> <a href="#">Chỉnh sửa</a></td>
+                                <td>{{number_format($ct->Sanpham->gia*$ct->soluong)}} VNĐ</td>
+                                
                             </tr>
                         @endforeach
                             

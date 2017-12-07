@@ -7,7 +7,7 @@
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-striped table-bordered table-hover" >
                         <thead>
                             <tr align="center">
                                 <th>ID</th>
@@ -36,8 +36,11 @@
                                 <td>{{$user->sodienthoai}}</td>
                                 <td>{{$user->created_at}}</td>
                                 <td class="center">
-                                	<i class="fa fa-trash-o  fa-fw"></i>
-                                	<a href="{{route('delete_user',$user->id)}}"> Delete</a>
+                                	
+                                	<a href="{{route('delete_user',$user->id)}}" 
+                                        onclick="return confirm('Bạn có muốn xóa không?')">
+                                        <i class="fa fa-trash-o  fa-fw"></i>
+                                    </a>
                                 </td>
                                 
                             </tr>

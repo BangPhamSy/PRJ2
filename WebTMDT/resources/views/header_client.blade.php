@@ -111,11 +111,13 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="search pull-right" style="position: relative;">
-							<input type="text"	placeholder="Nhập sản phẩm cần tìm kiếm"
-								 style="width:300px;" />
-							<button style="position: absolute;top: 0;right: 0;bottom: 0;">	
-								Tìm kiếm
-							</button>
+							<form action="tim-kiem" method = "get">
+								<input type="text" name="search"	placeholder="Nhập sản phẩm cần tìm kiếm...."
+									 style="width:300px;height: 30px" />
+								<button style="position: absolute;top: 0;right: 0;bottom: 0;">	
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>

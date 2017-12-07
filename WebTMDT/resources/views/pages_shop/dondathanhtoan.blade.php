@@ -4,10 +4,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Danh sách
-                            <small>đơn hàng đã đặt mua</small>
+                            <small>đơn hàng đã giao</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
+
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr align="center">
@@ -18,14 +19,14 @@
                                 <th>Tổng tiền</th>
                                 <th>HT thanh toán</th>
                                 <th>Chi tiết đơn</th>
-                                <th>Tình trạng đơn</th>
-                                <th>Ship hàng</th>
                                 <th>Thời gian ship hàng</th>
-                                
+                                <th>Thời gian nhận hàng</th>
+                                <th>Nhận hàng</th>
+                               
                             </tr>
                         </thead>
-                        <tbody id="myTable">
-                        @foreach($donhang as $dh)
+                        <tbody>
+                        @foreach($dondathanhtoan as $dh)
                             <tr class="odd gradeX" align="center">
                                 <td>{{$i++}}</td>
                                 <td>{{$dh->Donhang->hoten}}</td>
@@ -46,23 +47,23 @@
                                         Xem chi tiết
                                     </a>
                                 </td>
-                                <td class="center">
-                                    @if($dh->tinhtrangdon==1)
-                                        <b style="color: green;">Đã giao hàng</b>
-                                    @else
-                                        <b style="color: red;">Chưa giao hàng</b>
-                                    @endif
+                                <td >
+                                    {{$dh->created_at}}
                                 </td>
-
                                 <td>
-                                @if($dh->tinhtrangdon==0)
-                                    <a href="qlshop/shop/{{$shop->id}}/donhang/shiphang/{{$dh->id}}">Đồng ý</a>
-                                @else 
-                                    <i style="color: green;">Đã giao hàng</i>
+                                @if($dh->nhanhang==1)
+                                    {{$dh->updated_at}}
+                                @else
                                 @endif
                                 </td>
                                 <td>
-                                    {{$dh->updated_at}}
+                                    @if($dh->nhanhang==1)
+                                        <i style="color: green;">Đã nhận hàng</i>
+                                    @else
+                                        <a href="qlshop/shop/{{$shop->id}}/donhang/nhanhang/{{$dh->id}}">
+                                            Xác nhận
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach    

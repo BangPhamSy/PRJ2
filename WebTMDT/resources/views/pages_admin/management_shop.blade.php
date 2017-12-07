@@ -9,7 +9,7 @@
                     </div>
 
                     <!-- /.col-lg-12 -->
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-striped table-bordered table-hover">
                     	
                         <thead>
                             <tr align="center">

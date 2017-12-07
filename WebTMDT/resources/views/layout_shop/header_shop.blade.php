@@ -1,6 +1,6 @@
 
 
-      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background: pink;">
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background: #d0ffc0;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -101,9 +101,27 @@
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/tile">Theo tỉ lệ</a>
+                                            <ul class="nav nav-four-level">
+                                                 @foreach($loaisp as $lsp)
+                                                    <li>
+                                                        <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/tile/danhsach/{{$lsp->id}}">
+                                                            {{$lsp->tenloaisanpham}}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
                                         </li>
                                         <li>
                                             <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/donggia">Đồng giá</a>
+                                            <ul class="nav nav-four-level">
+                                                 @foreach($loaisp as $lsp)
+                                                    <li>
+                                                        <a href="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/donggia/danhsach/{{$lsp->id}}">
+                                                            {{$lsp->tenloaisanpham}}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
                                         </li>
                                        
                                      </ul>
@@ -119,10 +137,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="qlshop/shop/{{$shop->id}}/donhang/danhsach">Đơn hàng chưa thanh toán</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/donhang/danhsach">Đơn hàng </a>
                                 </li>
                                 <li>
-                                    <a href="#">Đơn hàng đã thanh toán</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/donhang/don-da-thanh-toan">Đơn hàng đã giao</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
