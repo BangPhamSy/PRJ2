@@ -16,4 +16,7 @@ class Users extends Model
     public function Tichdiem(){
     	return $this->hasOne('App\Tichdiem','user_id','id');
     }
+    public function Binhluan(){
+        return $this->hasMany('App\Binhluan','user_id','id');
+    }
 }

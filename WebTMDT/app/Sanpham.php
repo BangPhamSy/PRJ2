@@ -23,5 +23,7 @@ class Sanpham extends Model
     {
       return $this->hasMany('App\Chitietdon','sanpham_id','id');
     }
-
+    public function Binhluan(){
+      return $this->hasMany('App\Binhluan','sanpham_id','id');
+    }
 }

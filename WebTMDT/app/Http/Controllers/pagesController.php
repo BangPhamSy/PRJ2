@@ -134,6 +134,24 @@ class pagesController extends Controller
         $sanphammoi = Sanpham::where('trangthai','1')->paginate(6);
         return view('pages_client.trangchu',compact('danhsach','sanphammoi'));
     }
+    public function xemDonHang()
+    {
+        $i = 1;
+        $donhang = Donhang::where('user_id',Auth::User()->id)->get();
+        return view('pages_client.xemdonhang',compact('donhang','i'));
+    }
+    public function chiTietDon($id)
+    {
+        $i = 1;
+        $donhangshop = Donhangshop::where('donhang_id',$id)->get();
+        return view('pages_client.donhangshop',compact('donhangshop','i'));
+    }
+    public function donHangShop($id)
+    {
+        $i =1;
+        $chitietdon = Chitietdon::where('donhangshop_id',$id)->get();
+        return view('pages_client.chitietdon',compact('chitietdon','i'));
+    }
     public function loaisanpham($id){
         $tenlsp = Loaisanpham::find($id);
         $loaisanpham = Sanpham::where('loaisanpham_id',$id)->paginate(6);
@@ -177,9 +195,31 @@ class pagesController extends Controller
         return redirect()->back();
     }
     public function thongtindonhang(){
-      
+       if(Auth::check())
+       {
+            $diemthuong = Tichdiem::where('user_id',Auth::User()->id)->first();
+              if($diemthuong->diem==0){
+                    $tienquydoi = 0;
+                }
+              else  if(0<$diemthuong->diem&&$diemthuong->diem<30)
+               {
+                    $tienquydoi = 20000;
+               }
+               else if(30<$diemthuong->diem&&$diemthuong->diem<60)
+               {
+                    $tienquydoi = 30000;
+               }
+               else if(60<$diemthuong->diem&&$diemthuong->diem<100)
+               {
+                    $tienquydoi = 50000;
+               }
+               else
+                    $tienquydoi = 70000;
+            $user = Users::where('id',Auth::User()->id)->first();
+       }
         
-        return view('pages_client.checkout');
+        
+        return view('pages_client.checkout',compact('diemthuong','tienquydoi','user'));
 
     }
     public function postDonhang(Request $request)
@@ -199,8 +239,9 @@ class pagesController extends Controller
                 'sodienthoai.required'  =>'Bạn cần điền số điện thoại'
             ]
             );
-
-        $diemthuong = Tichdiem::where('user_id',Auth::User()->id)->first();
+        if(Auth::check())
+        {
+             $diemthuong = Tichdiem::where('user_id',Auth::User()->id)->first();
                if($diemthuong->diem==0){
                     $tienquydoi = 0;
                 }
@@ -227,11 +268,19 @@ class pagesController extends Controller
                }
                else 
                     $tienquydoi = 100000;
+        }
+
+       
 
 
         $total_money = floatval(preg_replace('/[^\d.]/', '',Cart::subtotal()));
         $donhang                = new Donhang();
-        $donhang->user_id       = Auth::User()->id;
+        if(Auth::check())
+        {
+            $donhang->user_id       = Auth::User()->id;
+        }
+        else
+            $donhang->user_id       = NULL;
         $donhang->hoten         = $request->hoten;
         $donhang->email         = $request->email;
         $donhang->diachi        = $request->diachi;
@@ -244,6 +293,7 @@ class pagesController extends Controller
              ->update(['diem'=>0]);
         }
         $donhang->tongtien      = $total_money;
+        $donhang->hinhthucthanhtoan = $request->thanhtoan;
         $donhang->save();
 
 
@@ -262,7 +312,7 @@ class pagesController extends Controller
         else
             $prize_point = 50;
 
-        if($donhang->save())
+        if($donhang->save()&&Auth::check())
         {
             $diem = Tichdiem::where('user_id',Auth::User()->id)->first();
             $diemthem = $diem->diem+$prize_point;
@@ -285,7 +335,8 @@ class pagesController extends Controller
                 $donhangshop                = new Donhangshop();
                 $donhangshop->donhang_id    = $donhang->id;
                 $donhangshop->shop_id       = $items[0]->options->mashop;
-                $donhangshop->tongtien      = $items[0]->price*$items[0]->qty;
+                
+                $donhangshop->tongtien      =$items[0]->price*$items[0]->qty;;
                 $donhangshop->tinhtrangdon  = 0;
                 $donhangshop->hinhthuc      = 0;
                 $donhangshop->nhanhang      = 0;
@@ -297,17 +348,21 @@ class pagesController extends Controller
                 $chitietdon->sanpham_id     = $item->id;
                 $chitietdon->soluong        = $item->qty;
                 $chitietdon->save();
+
                 $sanphamshop = Sanphamshop::where('sanpham_id',$item->id)->first();
                 $soluongxuat = $sanphamshop->soluongxuat+$item->qty;
                 $update_slx = Sanphamshop::where('sanpham_id',$item->id)
                                 ->update(['soluongxuat'=>$soluongxuat]);
 
             }
+
             
         }
         
-       
-
+       Cart::destroy();
+       if(Auth::check())
          return redirect()->back()->with('thanhcong','Đặt hàng thành công và bạn được cộng thêm'.$prize_point. 'điểm cho lần mua tiếp theo');
+        else
+             return redirect()->back()->with('thanhcong','Đặt hàng thành công');
     }
 }

@@ -68,6 +68,9 @@ Route::group(['prefix'=>'index'],function(){
 	Route::get('loai-san-pham/{id}','pagesController@loaisanpham');
 	Route::get('thuong-hieu/{tenth}','pagesController@thuonghieu');
 	Route::get('sanpham/{id}','pagesController@xemSanPham');
+	Route::get('don-hang','pagesController@xemDonHang');
+	Route::get('chi-tiet-don/{id}','pagesController@chiTietDon');
+	Route::get('chitietdon/{id}','pagesController@donHangShop');
 	Route::get('gio-hang','pagesController@gioHang');
 	Route::get('them-gio-hang/{idsp}','pagesController@themgiohang');
 	Route::get('xoa-san-pham/{id}','pagesController@xoa_san_pham');
@@ -134,6 +137,10 @@ Route::group(['prefix'=>'qlshop'],function(){
 
 			Route::get('danhsach/{id_loaisp}','ShopController@getKho');
 
+		});
+		//QUAN LI BINH LUAN
+		Route::group(['prefix'=>'binhluan'],function(){
+			Route::get('danhsach','ShopController@getDanhSachBinhLuan');
 		});
 		
 	});

@@ -23,18 +23,12 @@
 											<div class="overlay-content">
 												<h2>{{number_format($ds->gia)}}đ</h2>
 												<p>{{$ds->tensanpham}}</p>
-											@if(Auth::check())
 												<a href="index/them-gio-hang/{{$ds->id}}" 
 													class="btn btn-default add-to-cart"
 													onclick="return alert('Thêm vào giỏ hàng thành công')">
 													<i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng
 												</a>
-											@else
-												<a href="" 
-													class="btn btn-default add-to-cart">
-													Đăng nhập để mua hàng
-												</a>
-											@endif
+											
 											</div>
 										</div>
 										@if($ds->trangthai==1)

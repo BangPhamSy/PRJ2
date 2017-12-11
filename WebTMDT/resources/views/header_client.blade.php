@@ -62,12 +62,13 @@
 								@if(Auth::check())
 								<li><a href="#"><i class="fa fa-user"></i>{{Auth::User()->name}}</a></li>
 								<li><a href="{{route('dangxuat')}}"><i class="fa fa-star"></i>Đăng xuất</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i>Đơn hàng</a></li>
+								<li><a href="index/don-hang"><i class="fa fa-crosshairs"></i>Đơn hàng</a></li>
 								<li><a href="index/gio-hang"><i class="fa fa-shopping-cart"></i>Giỏ hàng({{ Cart::count() }})</a></li>
 								
 								@else
 									<li><a href="{{route('dangki')}}"><i class="fa fa-star"></i>Đăng kí</a></li>
 									<li><a href="{{route('login')}}"><i class="fa fa-lock"></i>Đăng nhập</a></li>
+									<li><a href="index/gio-hang"><i class="fa fa-shopping-cart"></i>Giỏ hàng({{ Cart::count() }})</a></li>
 									
 								@endif
 							</ul>

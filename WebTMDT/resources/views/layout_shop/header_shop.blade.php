@@ -172,7 +172,7 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List User</a>
+                                    <a href="qlshop/shop/{{$shop->id}}/binhluan/danhsach">Danh sách bình luận</a>
                                 </li>
                                 <li>
                                     <a href="#">Add User</a>

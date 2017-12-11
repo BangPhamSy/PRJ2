@@ -10,6 +10,7 @@ use\App\Sanphamshop;
 use\App\Donhang;
 use\App\Donhangshop;
 use\App\Chitietdon;
+use\App\Binhluan;
 class ShopController extends Controller
 {
    public function shop($id){
@@ -284,5 +285,12 @@ class ShopController extends Controller
         $spkho = Sanpham::where('shop_id',$id)->where('loaisanpham_id',$id_loaisp)->paginate(5);
     	return view('pages_shop.khohang',compact('shop','spkho'));
     }
-
+//====================QUẢN LÝ BÌNH LUẬN=============================//
+    public function getDanhSachBinhLuan($id)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $binhluan = Binhluan::all();
+        return view('pages_shop.danhsachbinhluan',compact('shop','binhluan'));
+    }
 }

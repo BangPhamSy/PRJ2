@@ -15,4 +15,8 @@ class Donhangshop extends Model
     {
     	return $this->belongsTo('App\Donhang','donhang_id');
     }
+    public function Shop()
+    {
+    	return $this->belongsTo('App\Shop','shop_id','id');
+    }
 }
