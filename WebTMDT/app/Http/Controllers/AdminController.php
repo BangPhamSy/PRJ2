@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\taoshop;
 use App\Users;
 use App\Shop;
+use App\Binhluan;
 
 class AdminController extends Controller
 {
@@ -80,4 +81,17 @@ class AdminController extends Controller
     	$delete_shop = Shop::where('user_id','$id->id')->delete();
     	return redirect()->back();
     }
+    public function BL()
+    {
+
+        $danhSachBL = Binhluan::where('user_id','<>',4)->paginate(5);
+        return view('pages_admin.danhsachbinhluan',compact('danhSachBL'));
+    }
+    public function xoaBL($id)
+    {
+
+        Binhluan::destroy($id);
+        return redirect()->back();
+    }
+
 }

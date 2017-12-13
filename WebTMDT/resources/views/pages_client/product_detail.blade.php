@@ -119,43 +119,108 @@
 					
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
-									<div class="comment">
+									<!-- <div class="comment">
 										<ul>
 											<li><a href=""><i class="fa fa-user"></i>Nguyễn Văn A</a></li>
 											<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
 											<li><a href=""><i class="fa fa-calendar-o"></i>16 NOV 2017</a></li>
 										</ul>
 										<p>Sản phẩm tốt như mong đợi</p>
-									</div>
-									<div class="comment">
-										<ul>
-											<li><a href=""><i class="fa fa-user"></i>Nguyễn Văn B</a></li>
-											<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-											<li><a href=""><i class="fa fa-calendar-o"></i>17 NOV 2017</a></li>
-										</ul>
-										<p>Sản phẩm tốt mà rẻ</p>
+									</div> -->
+									@foreach($comment as $cm)
+										<div class="comment">
+										
+											<ul>
+												<li><a href="">
+													<i class="fa fa-user"></i>
+														{{$cm->hoten}}
+													</a>
+												</li>
+												<li><a href="">
+													<i class="fa fa-clock-o"></i>
+														{{$cm->created_at}}</a>
+												</li>
+												
+												
+											</ul>
+											<p>
+												<a href="">
+													@if($cm->sodiem ==3)
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+													@elseif($cm->sodiem ==4)
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+													@elseif($cm->sodiem ==2)
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+													@elseif($cm->sodiem ==1)
+														<i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+													@else 
+														Câu hỏi:
+													@endif
+													</a>
+												
+											</p>
+											<p>{{$cm->noidung}}</p>
+											@if($cm->traloi!=NULL)
+												<a href="">Shop</a>: <b>{{$cm->traloi}}</b>
+												</br>
+											@endif
+
+										
+										</div>
+									@endforeach
+									<div class="row" style="text-align: center">
+										{{$comment->links()}}
 									</div>
 									<div class="send" style="padding-top: 20px;">
-										<p><b>Gửi đánh giá của bạn về sản phẩm</b></p>
+										<p><b>Gửi đánh giá hoặc câu hỏi của bạn về sản phẩm</b></p>
 									
-										<form action="#">
-											<span>
-												<input type="text" placeholder="Your Name"/>
-												<input type="email" placeholder="Email Address"/>
-											</span>
-											<textarea name="" ></textarea>
-											<b>Đánh giá:
-												<select style="width: 200px;">
-													<option>Rất Tốt</option>
-													<option>Tốt</option>
-													<option>Trung Bình</option>
-													<option>Xấu</option>
-												</select>
-											 </b> 
-											<button type="button" class="btn btn-default pull-right">
-												Submit
-											</button>
-										</form>
+					<form action="index/danh-gia/{{$sanpham->id}}" method="post">
+						<input type="hidden" name="_token" value="{{csrf_token()}}" >
+					 @if(Session::has('thanhcong'))
+                             <div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+                      @endif
+                      @if(!Auth::check())
+						<span>
+							<input type="text" name="name" placeholder="Your Name"/>
+							<input type="email" name="email" placeholder="Email Address"/>
+						</span>
+						<textarea name="content" ></textarea>
+						<b>Đánh giá:
+							<select name="rate" style="width: 200px;">
+								
+								<option value="4">Rất Tốt</option>
+								<option value="3">Tốt</option>
+								<option value="2">Trung Bình</option>
+								<option value="1">Xấu</option>
+								<option value="0">Hỏi về sản phẩm</option>
+							</select>
+						 </b> 
+						<button type="submit" class="btn btn-default pull-right">
+							Submit
+						</button>
+					@else
+						<textarea name="content" ></textarea>
+						<b>Đánh giá:
+							<select name="rate" style="width: 200px;">
+								
+								<option value="4">Rất Tốt</option>
+								<option value="3">Tốt</option>
+								<option value="2">Trung Bình</option>
+								<option value="1">Xấu</option>
+								<option value="0">Hỏi về sản phẩm</option>
+							</select>
+						 </b> 
+						<button type="submit" class="btn btn-default pull-right">
+							Submit
+						</button>
+					@endif
+					</form>
 									</div>
 									
 								</div>

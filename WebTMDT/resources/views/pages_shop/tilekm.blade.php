@@ -4,9 +4,9 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <h1 class="page-header">Khuyến mại theo 
+                        <h3 class="page-header">Khuyến mại theo 
                             <small> tỉ lệ</small>
-                        </h1>
+                        </h3>
                             <p style="color: white;">{{$i=1}}</p>
                     <form style="width: 300px;padding-bottom: 30px" 
                         method="post" action="qlshop/shop/{{$shop->id}}/khuyenmai/chienluoc/tile">

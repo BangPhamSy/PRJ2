@@ -66,14 +66,12 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i>Quản lí kho<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Quản lí bình luận<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List User</a>
+                                    <a href="{{route('danh-sach-binh-luan')}}">Danh sách bình luận</a>
                                 </li>
-                                <li>
-                                    <a href="#">Add User</a>
-                                </li>
+                               
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

@@ -19,6 +19,33 @@ class ShopController extends Controller
         
     	return view('pages_shop.trangchu',['shop'=>$shop]);
     }
+    //=======================THỐNG KÊ===================================//
+    public function sanPhamBanChay($id)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $sanPhamBanChay = Sanphamshop::where('shop_id',$id)
+        ->where('soluongxuat','>',0)->orderBy('soluongxuat','desc')->paginate(5);
+        return view('pages_shop.topbanchay',compact('shop','sanPhamBanChay'));
+    }
+    public function sanPhamBinhChon($id)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $sanPhamBinhChon = Sanphamshop::where('shop_id',$id)->
+        where('sodiem','>',0)->orderBy('sodiem','desc')->paginate(5);
+        return view('pages_shop.topbinhchon',compact('shop','sanPhamBinhChon'));
+    }
+    public function tongDoanhThu($id)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+
+        $tongDoanhThu = Donhangshop::where('shop_id',$id)->where('nhanhang','1')
+        ->sum('tongtien');
+        return view('pages_shop.tongdoanhthu',compact('shop','tongDoanhThu'));
+    }
+
 
     //====================QUẢN LÝ SẢN PHẨM===========================//
 
@@ -286,11 +313,38 @@ class ShopController extends Controller
     	return view('pages_shop.khohang',compact('shop','spkho'));
     }
 //====================QUẢN LÝ BÌNH LUẬN=============================//
-    public function getDanhSachBinhLuan($id)
+    public function getDanhSachCauHoi($id)
     {
         $shop = Shop::find($id);
         view()->share('shop',$shop);
-        $binhluan = Binhluan::all();
+        $sanphamshop = $shop->productIds;
+        
+        $binhluan = Binhluan::where('kieubl',1)->whereIn('sanpham_id',$sanphamshop)->get();
         return view('pages_shop.danhsachbinhluan',compact('shop','binhluan'));
     }
+    public function TraLoi($id,$id_cauhoi ,Request $request)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+
+        $traloi = Binhluan::where('id',$id_cauhoi)->update(['traloi'=>$request->traloi]);
+        return view('pages_shop.traloicauhoi',compact('shop','id_cauhoi'));
+    }
+    public function xoaTraLoi($id,$id_cauhoi)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        Binhluan::destroy($id_cauhoi);
+        return redirect()->back();
+    }
+    public function danhGia($id)
+    {
+        $shop = Shop::find($id);
+        view()->share('shop',$shop);
+        $sanphamshop = $shop->productIds;
+        
+        $binhluan = Binhluan::where('kieubl',0)->whereIn('sanpham_id',$sanphamshop)->get();
+        return view('pages_shop.danhsachdanhgia',compact('shop','binhluan'));
+    }
+    
 }

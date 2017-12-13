@@ -16,6 +16,7 @@ use App\Donhang;
 use App\Donhangshop;
 use App\Chitietdon;
 use App\Sanphamshop;
+use App\Binhluan;
 use Cart;
 
 class pagesController extends Controller
@@ -166,7 +167,41 @@ class pagesController extends Controller
 
     public function xemSanPham($id){
         $sanpham = Sanpham::find($id);
-        return view('pages_client.product_detail',compact('sanpham'));
+        $comment= Binhluan::where('sanpham_id',$id)->orderBy('id','desc')->paginate(5);
+         return view('pages_client.product_detail',compact('sanpham','comment'));
+    }
+
+    public function danhGia($id,Request $request){
+        $binhluan  = new Binhluan();
+        $binhluan->sanpham_id = $id;
+        
+        if(Auth::check())
+        {
+            $profile = Users::find(Auth::User()->id);
+            $binhluan->user_id = Auth::User()->id;
+            $binhluan->hoten = $profile->name;
+            $binhluan->email = $profile->email;
+
+        }
+           
+        else
+        {
+            $binhluan->user_id = NULL;
+            $binhluan->hoten = $request->name;
+            $binhluan->email = $request->email;
+        }
+        if($request->rate==0)
+            $binhluan->kieubl = 1;
+        else
+            $binhluan->kieubl = 0;
+            
+        $binhluan->noidung = $request->content;
+        $binhluan->sodiem = $request->rate;
+        $binhluan->save();
+        $sanphamshop = Sanphamshop::where('sanpham_id',$id)->first();
+        $point = $sanphamshop->sodiem + $request->rate;
+        $update_point = Sanphamshop::where('sanpham_id',$id)->update(['sodiem'=>$point]);
+        return redirect()->back()->with('thanhcong','Cảm ơn bạn đã phản hồi');
     }
     public function gioHang(){
            return view('pages_client.cart');
@@ -270,8 +305,6 @@ class pagesController extends Controller
                     $tienquydoi = 100000;
         }
 
-       
-
 
         $total_money = floatval(preg_replace('/[^\d.]/', '',Cart::subtotal()));
         $donhang                = new Donhang();
@@ -335,8 +368,10 @@ class pagesController extends Controller
                 $donhangshop                = new Donhangshop();
                 $donhangshop->donhang_id    = $donhang->id;
                 $donhangshop->shop_id       = $items[0]->options->mashop;
+                foreach ($items as $item) {
+                   $donhangshop->tongtien      += $item->price*$item->qty;
+                }
                 
-                $donhangshop->tongtien      =$items[0]->price*$items[0]->qty;;
                 $donhangshop->tinhtrangdon  = 0;
                 $donhangshop->hinhthuc      = 0;
                 $donhangshop->nhanhang      = 0;

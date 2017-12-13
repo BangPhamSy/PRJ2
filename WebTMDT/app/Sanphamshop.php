@@ -15,7 +15,10 @@ class Sanphamshop extends Model
   	{
   		return $this->belongsTo('App\Sanpham','sanpham_id','id');
   	}
-
+    public function Shop()
+    {
+      return $this->belongsTo('App\Sanphamshop','sanpham_id','id');
+    }
 
      public $timestamps = false;
 }

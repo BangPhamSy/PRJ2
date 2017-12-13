@@ -3,7 +3,7 @@
     
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header">Danh sách câu hỏi của khách hàng
+                        <h3 class="page-header">Danh sách đánh giá của khách hàng
                             <small></small>
                         </h3>
                         <p style="color: white;">{{$i=1}}</p>
@@ -16,11 +16,9 @@
                                 <th>Tên khách hàng</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Hình ảnh</th>
-                                
+                                <th>Số <i class="fa fa-star" aria-hidden="true"></i></th>
                                 <th>Nội dung</th>
                                 <th>Thời gian bình luận</th>
-                                <th>Trả lời</th>
-                                <th>Thời gian trả lời</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,32 +30,36 @@
                                 <td>
                                     <img style="height:50px; " src="upload/{{$bl->Sanpham->hinhanh}}">
                                 </td>
+                                <td>
+                                    @if($bl->sodiem ==3)
+
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                    @elseif($bl->sodiem ==4)
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                    @elseif($bl->sodiem ==2)
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                                    @elseif($bl->sodiem ==1)
+                                                        <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+                                    @endif
+                                </td>
+                                
+
+
                                 <td>{{$bl->noidung}}</td>
                                 <td>{{$bl->created_at}}</td>
-                                @if($bl->traloi==NULL)
-                                    <td>
-                                        <a href="qlshop/shop/{{$shop->id}}/binhluan/traloi/{{$bl->id}}">
-                                            
-                                        <i class="fa fa-question" style="color: red" aria-hidden="true"></i>
-                                        </a>
-                                        
-                                    </td>
-                                    <td></td>
-                                @else
-                                    <td>
-                                        <a href="">
-                                            <i class="fa fa-check-square-o" style="color: green;" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                    <td>{{$bl->updated_at}}</td>
-                                @endif
 
-                           <!--      <td>
+                               <!--  <td>
                                     <a href="qlshop/shop/{{$shop->id}}/binhluan/xoa/{{$bl->id}}" onclick="return confirm('Bạn có thực sự muốn xóa câu hỏi này?')">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </a>
-                                </td>
-                                 -->
+                                </td> -->
+                                
                             </tr>
                         @endforeach
                             

@@ -68,9 +68,11 @@ Route::group(['prefix'=>'index'],function(){
 	Route::get('loai-san-pham/{id}','pagesController@loaisanpham');
 	Route::get('thuong-hieu/{tenth}','pagesController@thuonghieu');
 	Route::get('sanpham/{id}','pagesController@xemSanPham');
+	Route::post('danh-gia/{id}','pagesController@danhGia');
 	Route::get('don-hang','pagesController@xemDonHang');
 	Route::get('chi-tiet-don/{id}','pagesController@chiTietDon');
 	Route::get('chitietdon/{id}','pagesController@donHangShop');
+
 	Route::get('gio-hang','pagesController@gioHang');
 	Route::get('them-gio-hang/{idsp}','pagesController@themgiohang');
 	Route::get('xoa-san-pham/{id}','pagesController@xoa_san_pham');
@@ -85,6 +87,12 @@ Route::group(['prefix'=>'qlshop'],function(){
 
 	Route::get('shop/{id}','ShopController@shop');
 	Route::group(['prefix'=>'shop/{id}'],function(){
+		Route::group(['prefix'=>'thongke'],function()
+		{
+			Route::get('ban-chay','ShopController@sanPhamBanChay');
+			Route::get('binh-chon','ShopController@sanPhamBinhChon');
+			Route::get('doanh-thu','ShopController@tongDoanhThu');
+		});
 
 		Route::group(['prefix'=>'sanpham'],function(){
 			Route::get('danhsach/{id_loaisp}','ShopController@danhsach_sp');
@@ -140,7 +148,11 @@ Route::group(['prefix'=>'qlshop'],function(){
 		});
 		//QUAN LI BINH LUAN
 		Route::group(['prefix'=>'binhluan'],function(){
-			Route::get('danhsach','ShopController@getDanhSachBinhLuan');
+			Route::get('danhsach','ShopController@getDanhSachCauHoi');
+			Route::get('traloi/{id_cauhoi}','ShopController@TraLoi');
+			Route::post('traloi/{id_cauhoi}','ShopController@TraLoi');
+			Route::get('xoa/{id_cauhoi}','ShopController@xoaTraLoi');
+			Route::get('danhgia','ShopController@danhGia');
 		});
 		
 	});
@@ -184,6 +196,14 @@ Route::get('management_user',array(
 Route::get('delete_user/{id}',array(
 		'as'=>'delete_user',
 		'uses'=>'AdminController@delete_user'
+));
+Route::get('danh-sach-binh-luan',array(
+		'as'=>'danh-sach-binh-luan',
+		'uses'=>'AdminController@BL'
+));
+Route::get('xoa-binh-luan/{id}',array(
+		'as'=>'xoa-binh-luan',
+		'uses'=>'AdminController@xoaBL'
 ));
 
 ?>

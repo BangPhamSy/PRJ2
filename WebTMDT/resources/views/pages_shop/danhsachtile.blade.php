@@ -4,9 +4,9 @@
                 <div class="row">
 
                     <div class="col-lg-12">
-                        <h1 class="page-header">Khuyến mại tỉ lệ:
+                        <h3 class="page-header">Khuyến mại tỉ lệ:
                             <small>thời trang</small>
-                        </h1>
+                        </h3>
                         <i style="color: red">
                             **Bạn vui lòng chọn các sản phẩm vào danh sách trước khi update
                         </i>
