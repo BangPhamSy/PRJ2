@@ -291,7 +291,7 @@ class ShopController extends Controller
         view()->share('shop',$shop);
         $time  = date('Y-m-d  H:i:s');
         $newtime = date("Y-m-d H:i:s", (strtotime($time) + 86400 * $request->songay));
-        $capnhatgia = Sanpham::where('trangthai','1')
+        $capnhatgia = Sanpham::where('trangthai','1')->where('thoigiankmdonggia','=',NULL)
         ->update(['kmdonggia'=>$request->gia,'thoigiankmdonggia'=>$newtime]);
         return redirect()->back()->with('thanhcong','Cập nhật giá thành công');
     }
@@ -300,7 +300,7 @@ class ShopController extends Controller
         view()->share('shop',$shop);
         $time = date('Y-m-d H:i:s');
         $newtime  = date('Y-m-d H:i:s',(strtotime($time)+86400*$request->songay));
-        $capnhattile = Sanpham::where('trangthai','1')
+        $capnhattile = Sanpham::where('trangthai','1')->where('thoigiankmtile','=',NULL)
         ->update(['kmtile'=>$request->tile,'thoigiankmtile'=>$newtime]);
         return redirect()->back()->with('thanhcong','Cập nhật tỉ lệ thành công');
     }

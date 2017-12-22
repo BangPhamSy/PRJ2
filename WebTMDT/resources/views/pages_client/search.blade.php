@@ -55,7 +55,7 @@
 								</div>
 							@endforeach
 							<div class="row" align="center">
-								{{$search->links()}}
+								{{$search->appends(['search'=>$key_search])links()}}
 							</div>
 						</div>
 					</div>

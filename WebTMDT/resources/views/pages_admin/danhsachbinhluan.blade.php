@@ -46,7 +46,7 @@
                             
                         </tbody>
                     </table>
-                    <div class="row" align="center">{{$danhSachBL->links()}}</div>
+                   
                 </div>
 
                 <!-- /.row -->

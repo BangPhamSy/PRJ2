@@ -84,7 +84,7 @@ class AdminController extends Controller
     public function BL()
     {
 
-        $danhSachBL = Binhluan::where('user_id','<>',4)->paginate(5);
+        $danhSachBL = Binhluan::all();
         return view('pages_admin.danhsachbinhluan',compact('danhSachBL'));
     }
     public function xoaBL($id)

@@ -98,7 +98,8 @@ class pagesController extends Controller
                             ->join('Loaisanpham','Loaisanpham.id','=','Sanpham.loaisanpham_id')
                             ->orwhere('Loaisanpham.tenloaisanpham','like','%'.$req->search.'')
                             ->get();
-        return view('pages_client.search',compact('search','count'));
+        $key_search = $req->search;
+        return view('pages_client.search',compact('search','count','key_search'));
     }
     public function taoshop(){
     	return view('pages_client.taoshop');
